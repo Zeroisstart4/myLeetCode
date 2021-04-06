@@ -43,6 +43,8 @@
  * }
  */
 class Solution {
+    // 迭代法
+    /*
     public ListNode deleteDuplicates(ListNode head) {
         // 若链表为空，直接返回
         if(head == null) {
@@ -64,6 +66,27 @@ class Solution {
             }
         }
         return head;
+    }
+    */
+
+    // 递归法
+    // 递归的关键在与提取各个节点间操作的共性，通过递归进行规模的缩减
+    public ListNode deleteDuplicates(ListNode head) {
+
+        // 若链表至多只有一个元素，则不可能发生重复，直接返回
+        if(head == null || head.next == null) {
+            return head;
+        }
+        // 若头节点与后继节点发生重复，则将后继节点定义为新的头节点，递归调用 deleteDuplicates
+        if(head.val == head.next.val) {
+            head = head.next;
+            return deleteDuplicates(head);
+        }
+        // 若头节点与后继节点不重复，则进行链表重构，将头节点指向以后继节点为头节点，进行过删除重复元素的操作的链表
+        else {
+            head.next = deleteDuplicates(head.next);
+            return head;
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
