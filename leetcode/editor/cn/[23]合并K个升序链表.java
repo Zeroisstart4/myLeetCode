@@ -59,7 +59,54 @@
  */
 class Solution {
     public ListNode mergeKLists(ListNode[] lists) {
+        return merge(lists, 0, lists.length - 1);
+    }
+
+    public ListNode merge(ListNode[] lists, int left, int right) {
+        if(left == right) {
+            return lists[left];
+        }
+        if(left > right) {
+            return null;
+        }
+
+        int mid = left + ((right - left) >> 1);
+
+        // 关键，采用分治思想对链表进行合并
+        return mergeTwoLists(merge(lists, left, mid), merge(lists, mid + 1, right));
+    }
+
+
+    // 合并两个链表
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        if(l1 == null || l2 == null) {
+            return l1 != null ? l1 : l2;
+        }
+        // 设置哑节点
+        ListNode dummy = new ListNode();
+        // 设置遍历节点
+        ListNode cur = dummy;
+
+        // 在两大链表都不为空时添加元素(若题目要求不可破坏原链表结构，则需要进行复制新链表操作)
+        while(l1 != null && l2 != null) {
+            if(l1.val < l2.val) {
+                cur.next = l1;
+                l1 = l1.next;
+            }
+            else {
+                cur.next = l2;
+                l2 = l2.next;
+            }
+            // 记得每添加一个节点，就使当前节点后移一位
+            cur = cur.next;
+        }
+
+        // 在两个链表中的一个为空后，会跳出 while 循环，继续拼接未置空的链表
+        cur.next = (l1 != null ? l1 : l2);
+
+        return dummy.next;
 
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -9,8 +9,8 @@
 // 左右子树也必须是二叉搜索树。 
 // 
 //
-// 注意：本题和 1038: https://leetcode-cn.com/problems/binary-search-tree-to-greater-s
-//um-tree/ 相同 
+// 注意：该题目与 538: https://leetcode-cn.com/problems/convert-bst-to-greater-tree/ 相同
+// 
 //
 // 
 //
@@ -45,13 +45,13 @@
 // 提示： 
 //
 // 
-// 树中的节点数介于 0 和 104 之间。 
-// 每个节点的值介于 -104 和 104 之间。 
+// 树中的节点数介于 1 和 100 之间。 
+// 每个节点的值介于 0 和 100 之间。 
 // 树中的所有值 互不相同 。 
 // 给定的树为二叉搜索树。 
 // 
 // Related Topics 树 深度优先搜索 二叉搜索树 递归 
-// 👍 501 👎 0
+// 👍 108 👎 0
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
@@ -72,15 +72,14 @@
  */
 class Solution {
 
-    // 反序中序遍历法
     int sum = 0;
-    public TreeNode convertBST(TreeNode root) {
+    public TreeNode bstToGst(TreeNode root) {
 
         if(root != null) {
-            convertBST(root.right);
+            bstToGst(root.right);
             sum += root.val;
             root.val = sum;
-            convertBST(root.left);
+            bstToGst(root.left);
         }
         return root;
     }
