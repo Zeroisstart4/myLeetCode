@@ -45,7 +45,7 @@ class Solution {
         ListNode dummy = new ListNode(0);
         dummy.next = head;
         // 前驱节点
-        ListNode pre =  dummy;
+        ListNode pre = dummy;
         // 当前节点
         ListNode cur = head;
         // 若当前节点不等于目标值，则继续遍历

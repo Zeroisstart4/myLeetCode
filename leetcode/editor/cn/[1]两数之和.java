@@ -42,6 +42,9 @@
 // 👍 10781 👎 0
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     // 暴力枚举
@@ -61,8 +64,10 @@ class Solution {
 
     //  哈希表
     public int[] twoSum(int[] nums, int target) {
+        // 创建哈希 Map
         Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
         for (int i = 0; i < nums.length; ++i) {
+            // 在每次添加元素前检查 map 中是否有与之匹配的元素
             if (hashtable.containsKey(target - nums[i])) {
                 return new int[]{hashtable.get(target - nums[i]), i};
             }
@@ -70,6 +75,20 @@ class Solution {
         }
         return new int[0];
     }
+
+    /*public int[] twoSum(int[] nums, int target) {
+
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+
+            if(map.containsKey(target - nums[i])) {
+                return new int[]{i, map.get(target - nums[i])};
+            }
+
+            map.put(nums[i], i);
+        }
+    }*/
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

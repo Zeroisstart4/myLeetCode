@@ -53,7 +53,7 @@
  * }
  */
 class Solution {
-    public ListNode swapPairs(ListNode head) {
+    /*public ListNode swapPairs(ListNode head) {
         ListNode dummyHead = new ListNode(0);
         dummyHead.next = head;
         ListNode temp = dummyHead;
@@ -66,6 +66,24 @@ class Solution {
             temp = node1;
         }
         return dummyHead.next;
+    }*/
+
+
+    // 递归法
+    public ListNode swapPairs(ListNode head) {
+
+        //边界条件判断
+        if(head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode third = swapPairs(head.next.next);
+
+        ListNode second = head.next;
+        head.next = third;
+        second.next = head;
+
+        return second;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

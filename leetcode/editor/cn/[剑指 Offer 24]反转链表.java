@@ -50,23 +50,23 @@ class Solution {
     // 迭代法
     public ListNode reverseList(ListNode head) {
         // 前驱节点
-        ListNode prev = null;
+        ListNode pre = null;
         // 后继节点
-        ListNode curr = head;
+        ListNode cur = head;
 
         // 遍历链表
-        while(curr != null) {
+        while(cur != null) {
             // 记录在原链表中当前节点的下一节点
-            ListNode next = curr.next;
+            ListNode next = cur.next;
             // 当前节点指向前驱节点
-            curr.next = prev;
+            cur.next = pre;
             // 前驱节点后移一位
-            prev = curr;
+            pre = cur;
             // 当前节点后移一位
-            curr = next;
+            cur = next;
         }
         // 返回原链表中的最后一位节点
-        return prev;
+        return pre;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

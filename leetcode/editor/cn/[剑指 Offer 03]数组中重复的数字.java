@@ -26,18 +26,21 @@ import java.util.Set;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     // hashSet 查重
-    /*
     public int findRepeatNumber(int[] nums) {
+        // 创建 set
         Set<Integer> set = new HashSet<>();
+        // 记录结果
         int res = 0;
+        // 遍历集合
         for (int num : nums) {
-            if(!set.add(num)) {
+            // 若该元素已位于 set 中，则表示发生重复
+            if (!set.add(num)) {
                 res = num;
+                break;
             }
         }
         return res;
     }
-    */
 
     // hashMap 查重
     /*
@@ -81,6 +84,7 @@ class Solution {
     */
     
     // 原地置换
+    /*
     public int findRepeatNumber(int[] nums) {
         int temp = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -96,5 +100,6 @@ class Solution {
         }
         return -1;
     }
+    */
 }
 //leetcode submit region end(Prohibit modification and deletion)

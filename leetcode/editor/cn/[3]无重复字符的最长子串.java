@@ -46,9 +46,12 @@
 // 👍 5294 👎 0
 
 
+import java.util.HashMap;
+import java.util.Map;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public int lengthOfLongestSubstring(String s) {
+    /*public int lengthOfLongestSubstring(String s) {
         // 哈希集合，记录每个字符是否出现过
         Set<Character> occ = new HashSet<Character>();
         int n = s.length();
@@ -69,6 +72,35 @@ class Solution {
         }
         return ans;
 
+    }*/
+
+    // 滑动窗口
+    public int lengthOfLongestSubstring(String s) {
+        // 用与储存滑动窗口覆盖集
+        Map<Character, Integer> windows = new HashMap<>();
+        // 左右指针与结果值
+        int left = 0;
+        int right = 0;
+        int res = 0;
+        // 遍历字符串
+        while (right < s.length()) {
+            // 获取对应字符
+            char c = s.charAt(right);
+            right++;
+            // 将字符添加入覆盖集，并统计出现次数
+            windows.put(c, windows.getOrDefault(c, 0) + 1);
+            // 当发生字符重复时
+            while (windows.get(c) > 1) {
+                // 从左往右缩小滑动窗口
+                char rem = s.charAt(left);
+                left++;
+                windows.put(rem, windows.getOrDefault(rem, 0) - 1);
+            }
+            // 更新结果值
+            res = Math.max(res, right - left);
+        }
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

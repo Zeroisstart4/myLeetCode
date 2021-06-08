@@ -70,6 +70,7 @@ class Solution {
             return null;
         }
 
+        // 中间值
         int mid = left + ((right - left) >> 1);
 
         // 关键，采用分治思想对链表进行合并

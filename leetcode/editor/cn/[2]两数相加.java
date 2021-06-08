@@ -55,18 +55,27 @@
 class Solution {
     // 模拟
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+        // 设置首尾指针
         ListNode head = null, tail = null;
+        // 进位值
         int carry = 0;
+        // 遍历链表
         while (l1 != null || l2 != null) {
+            // 获取链表节点值
             int n1 = l1 != null ? l1.val : 0;
             int n2 = l2 != null ? l2.val : 0;
+            // 求和
             int sum = n1 + n2 + carry;
+            // 头节点初始化
             if (head == null) {
                 head = tail = new ListNode(sum % 10);
-            } else {
+            }
+            // 添加后续链表
+            else {
                 tail.next = new ListNode(sum % 10);
                 tail = tail.next;
             }
+            // 计算进位值
             carry = sum / 10;
             if (l1 != null) {
                 l1 = l1.next;
@@ -75,6 +84,7 @@ class Solution {
                 l2 = l2.next;
             }
         }
+        // 添加剩余元素
         if (carry > 0) {
             tail.next = new ListNode(carry);
         }

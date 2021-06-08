@@ -43,10 +43,14 @@
 // 👍 3434 👎 0
 
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     // 动态规划
-    public String longestPalindrome(String s) {
+    /*public String longestPalindrome(String s) {
         int n = s.length();
         boolean[][] dp = new boolean[n][n];
         String ans = "";
@@ -66,6 +70,41 @@ class Solution {
             }
         }
         return ans;
+    }*/
+
+    public String longestPalindrome(String s) {
+        // 记录数组长度
+        int n = s.length();
+        // 创建 dp 数组
+        boolean[][] dp = new boolean[n][n];
+        String ans = "";
+
+        //  i -> j 的间隔
+        for (int len = 0; len < n; len++) {
+            // 下标索引 i, j
+            for (int i = 0; i + len < n; i++) {
+                int j = i + len;
+                // 字符长度为 1 时，一定是回文串
+                if(len == 0) {
+                    dp[i][j] = true;
+                }
+                // 字符长度为 2 时，字符相同即为回文串
+                else if(len == 1) {
+                    dp[i][j] = (s.charAt(i) == s.charAt(j));
+                }
+                // 字符长度大于 2 时，比较首位字符后，比较首字符后移一位，尾字符前移一位的结果
+                else {
+                    dp[i][j] = (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]);
+                }
+                // 若 i -> j 为回文字串，且长度比结果串长，更新结果
+                if(dp[i][j] && len + 1 > ans.length()) {
+                    ans = s.substring(i, i + len + 1);
+                }
+            }
+        }
+
+        return ans;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

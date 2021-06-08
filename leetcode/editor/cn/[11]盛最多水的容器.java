@@ -51,7 +51,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     // 双指针
-    public int maxArea(int[] height) {
+    /*public int maxArea(int[] height) {
 
         int l = 0, r = height.length - 1;
 
@@ -67,6 +67,29 @@ class Solution {
                 r--;
             }
         }
+        return ans;
+    }*/
+
+    public int maxArea(int[] height) {
+        // 左右指针与结果值
+        int left = 0;
+        int right = height.length - 1;
+        int ans = 0;
+        // 遍历
+        while (left < right) {
+            // 底 * 高求面积
+            int area = Math.min(height[left], height[right]) * (right - left);
+            // 更新结果值
+            ans = Math.max(ans, area);
+            // 选择较优高度
+            if(height[left] <= height[right]) {
+                left++;
+            }
+            else {
+                right--;
+            }
+        }
+
         return ans;
     }
 }

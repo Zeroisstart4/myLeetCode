@@ -50,6 +50,11 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -61,24 +66,50 @@
  */
 public class Codec {
     String SEP = ",";
-    String NULL = "#";
-    StringBuilder sb = new StringBuilder();
+    String NULL = "None";
 
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
+        StringBuilder sb = new StringBuilder();
+        rserialize(root, sb);
+
+        return sb.toString();
+    }
+
+    public void rserialize(TreeNode root, StringBuilder sb) {
+
         if(root == null) {
             sb.append(NULL).append(SEP);
+            return;
         }
 
         sb.append(root.val).append(SEP);
 
-        serialize(root.left);
-        serialize(root.right);
+        rserialize(root.left, sb);
+        rserialize(root.right, sb);
+
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        
+        String[] dataArray = data.split(",");
+        LinkedList<String> dataList = new LinkedList<>(Arrays.asList(dataArray));
+        return rdeserialize(dataList);
+    }
+
+    public TreeNode rdeserialize(List<String> data) {
+
+        if (data.get(0).equals(NULL)) {
+            data.remove(0);
+            return null;
+        }
+
+        TreeNode root = new TreeNode(Integer.valueOf(data.get(0)));
+        data.remove(0);
+        root.left = rdeserialize(data);
+        root.right = rdeserialize(data);
+
+        return root;
     }
 }
 

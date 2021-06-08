@@ -51,7 +51,7 @@ class Solution {
     }*/
 
     // 双指针遍历优化（快慢指针）
-    public boolean isPalindrome(ListNode head) {
+    /*public boolean isPalindrome(ListNode head) {
         // 快指针
         ListNode slow = head;
         // 慢指针
@@ -92,6 +92,31 @@ class Solution {
             cur = nxt;
         }
         return pre;
+    }*/
+
+    ListNode front;
+    public boolean isPalindrome(ListNode head) {
+        front = head;
+        return check(head);
     }
+
+    public boolean check(ListNode head) {
+
+        if(head != null) {
+
+            if(!check(head.next)) {
+                return false;
+            }
+
+            if(head.val != front.val) {
+                return false;
+            }
+
+            front = front.next;
+        }
+
+        return true;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

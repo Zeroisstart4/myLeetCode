@@ -61,7 +61,8 @@
  * }
  */
 class Solution {
-    public TreeNode insertIntoBST(TreeNode root, int val) {
+    // 递归式
+    /*public TreeNode insertIntoBST(TreeNode root, int val) {
         // 若根节点为空，将待插入节点设置为根节点
         if(root == null) {
             return new TreeNode(val);
@@ -76,6 +77,40 @@ class Solution {
         }
 
         return root;
+    }*/
+
+    // 非递归式
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+        //边界条件判断
+        if(root == null) {
+            return new TreeNode(val);
+        }
+
+        TreeNode cur = root;
+
+        while (true) {
+            //如果当前节点cur的值大于val，说明val值应该插入到当前节点cur的左子树，否则就插入到当前节点cur的右子树
+            if(cur.val > val) {
+                //如果左子节点不为空，就继续往下找
+                if(cur.left != null) {
+                    cur = cur.left;
+                }
+                //如果左子节点为空，就直接插入去，然后再返回root节点
+                else {
+                    cur.left = new TreeNode(val);
+                    return root;
+                }
+            }
+            else  {
+                if(cur.right != null) {
+                    cur = cur.right;
+                }
+                else {
+                    cur.right = new TreeNode(val);
+                    return root;
+                }
+            }
+        }
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

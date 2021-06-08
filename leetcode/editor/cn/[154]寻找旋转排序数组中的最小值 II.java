@@ -56,15 +56,13 @@ class Solution {
 
         int low = 0;
         int high = nums.length - 1;
-
-        while(low < high) {
-            int mid = low + (high - low) / 2;
-
-            if(nums[mid] < nums[high]) {
-                high = mid;
+        while (low < high) {
+            int pivot = low + ((high - low) >>> 1);
+            if(nums[pivot] < nums[high]) {
+                high = pivot;
             }
-            else if (nums[mid] > nums[high]){
-                low = mid + 1;
+            else if(nums[pivot] > nums[high]) {
+                low = pivot + 1;
             }
             else {
                 high--;

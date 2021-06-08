@@ -58,7 +58,8 @@ class Solution {
         if(add == n) {
             return head;
         }
-        
+
+        // 闭合为环
         cur.next = head;
         
         while(add > 0) {
