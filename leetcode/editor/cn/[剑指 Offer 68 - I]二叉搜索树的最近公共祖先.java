@@ -68,6 +68,7 @@ class Solution {
         return ancestor;
     }*/
 
+    // 充分利用 BST 树的性质
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
         // 若两节点的值都小于根节点的值，表示两个节点都位于左子树，则递归左子树

@@ -60,19 +60,22 @@ class Solution {
     // 动态规划
     public boolean canJump(int[] nums) {
 
+        // 记录数组长度
         int len = nums.length;
-
+        // 若数组长度小于等于 1，一定可以跳达
         if(len <= 1) {
             return true;
         }
 
+        // 动态规划数组
         boolean[] dp = new boolean[len];
-
+        // 起始位置
         dp[0] = true;
 
+        // 遍历
         for (int i = 1; i < len; i++) {
             for (int j = 0; j < i; j++) {
-
+                // 可跳达 j 索引处，且 j + num[j] >= j,即可有 j 处跳达 i 处，则索引 i 处可达
                 if(dp[j] && j + nums[j] >= i) {
                     dp[i] = true;
                     break;

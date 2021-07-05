@@ -52,7 +52,7 @@ class Solution {
             return 1 / (x * myPow(x, -n - 1));
         }
         // 若次幂大于 0 ，则为奇数次幂，则返回 x 乘以 x 的 (n - 1)次幂
-        else if(n % 2 != 0) {
+        else if((n & 1) == 1) {
             return x * myPow(x, n - 1);
         }
         // 若次幂大于 0 ，则为偶数次幂，则返回 1 / x * x 的 n / 2 次幂

@@ -33,6 +33,28 @@
 class Solution {
     public int findNthDigit(int n) {
 
+        //  数字位数
+        int digit = 1;
+        // 起始位
+        long start = 1;
+        // start -> end 的统计个数
+        long count = 9;
+
+        // 当 n 是多位数时
+        while (n > count) {
+            // 减少 count
+            n -= count;
+            // 位数 + 1
+            digit += 1;
+            // 起始位 + 1 位
+            start *= 10;
+            // 更新 start -> end 的统计个数
+            count = digit * start * 9;
+        }
+
+        long num = start + (n - 1) / digit;
+
+        return Long.toString(num).charAt((n - 1) % digit) - '0';
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

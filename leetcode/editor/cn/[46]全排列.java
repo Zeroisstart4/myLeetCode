@@ -51,6 +51,11 @@ class Solution {
         return res;
     }
 
+    /**
+     *
+     * @param nums
+     * @param list
+     */
     public void backTrack(int[] nums, List<Integer> list) {
 
         // 递归中止条件

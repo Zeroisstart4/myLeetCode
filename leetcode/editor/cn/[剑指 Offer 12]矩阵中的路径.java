@@ -45,7 +45,9 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean exist(char[][] board, String word) {
+        // 字符串转数组
         char[] words = word.toCharArray();
+        // 遍历所有 board 数组的点，若存在一个匹配的字符序列，则返回 true
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if(dfs(board, words, i, j, 0)) {
@@ -58,10 +60,10 @@ class Solution {
 
     /**
      *  DFS
-     * @param board     给定的 m x n 二维字符网格
+     * @param board     给定的 m * n 二维字符网格
      * @param words     字符串单词数组
-     * @param i         行下标
-     * @param j         列下标
+     * @param i         二维字符网格行下标
+     * @param j         二维字符网格列下标
      * @param count     字符数组下标
      * @return
      */

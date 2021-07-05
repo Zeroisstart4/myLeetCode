@@ -67,12 +67,20 @@ class Solution {
             put('9', "wxyz");
         }};
 
+        // 回溯遍历
         backTrack(combinations, digits, 0, new StringBuilder());
 
         return combinations;
     }
 
 
+    /**
+     *  回溯
+     * @param combinations      组合结果集
+     * @param digits            键入数字字符串
+     * @param index             数字字符串索引
+     * @param combination       一个组合
+     */
     public void backTrack(List<String> combinations, String digits, int index, StringBuilder combination) {
 
         // 递归中止条件
@@ -85,7 +93,7 @@ class Solution {
         char digit = digits.charAt(index);
         // 通过数字获取对应的字符串
         String letters = phoneMap.get(digit);
-        // 获取字符串长度
+        // 获取对应字符串长度
         int count = letters.length();
 
         // 遍历

@@ -35,29 +35,35 @@ import java.util.List;
 class Solution {
     public int[][] findContinuousSequence(int target) {
 
+        // 左右指针
         int left = 1;
         int right = 2;
+        // 求和
         int sum = 3;
 
+        // 结果集合
         List<int[]> res = new ArrayList<>();
+        // 遍历
         while (left < right) {
-
+            // 若和 == 目标值
             if(sum == target) {
-
+                // 一个结果集合
                 int[] ans = new int[right - left + 1];
-
+                // 添加值
                 for (int i = left; i <= right; i++) {
                     ans[i - left] = i;
                 }
                 res.add(ans);
             }
-
+            // 若和 > 目标值
             if(sum >= target) {
-
+                // 左指针后移一位
                 sum -= left;
                 left++;
             }
+            // 若和 < 目标值
             else {
+                // 右指针前移一位
                 right++;
                 sum += right;
             }

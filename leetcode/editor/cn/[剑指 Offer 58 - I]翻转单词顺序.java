@@ -55,7 +55,7 @@ class Solution {
 
         while (left >= 0) {
             // 查找单词的首尾索引
-            while (left >=  0 && str.charAt(left) != ' ') {
+            while (left >= 0 && str.charAt(left) != ' ') {
                 left--;
             }
             // 添加单词

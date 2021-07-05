@@ -57,7 +57,8 @@
  * }
  */
 class Solution {
-    public boolean isBalanced(TreeNode root) {
+    // 自顶向下
+    /*public boolean isBalanced(TreeNode root) {
 
         if(root == null) {
             return true;
@@ -79,6 +80,40 @@ class Solution {
         }
         // 左右子树的最大深度 + 1
         return Math.max(depth(root.left), depth(root.right)) + 1;
+    }*/
+
+    // 自底向上
+    public boolean isBalanced(TreeNode root) {
+
+        return height(root) >= 0;
     }
+
+    /**
+     *  树高度
+     * @param root
+     * @return
+     */
+    public int height(TreeNode root) {
+
+        // 健壮性判断
+        if(root == null) {
+            return 0;
+        }
+        // 左子树高度
+        int leftHeight = height(root.left);
+        // 右子树高度
+        int rightHeight = height(root.right);
+
+        // 若左子树高度或右子树高度为 -1，或者左右子树高度差大于 1
+        if(leftHeight == -1 || rightHeight == -1 || Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+        else {
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
+    }
+
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

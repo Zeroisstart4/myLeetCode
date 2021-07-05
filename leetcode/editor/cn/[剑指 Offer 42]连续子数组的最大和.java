@@ -28,17 +28,20 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    // 动态规划
     public int maxSubArray(int[] nums) {
-
+        // 结果值
         int res = nums[0];
+        // 遍历数组
         for (int i = 1; i < nums.length; i++) {
-
+            // 若前一位数为正数，则添加，否则则剔除
             nums[i] += Math.max(nums[i - 1], 0);
-
+            // 记录当前的最大值
             res = Math.max(res, nums[i]);
         }
 
         return res;
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

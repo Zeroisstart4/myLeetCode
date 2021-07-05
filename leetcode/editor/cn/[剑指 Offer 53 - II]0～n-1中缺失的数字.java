@@ -47,9 +47,12 @@ class Solution {
 
     // 异或法
     public int missingNumber(int[] nums) {
-
+        // 缺失值
         int miss = 0;
 
+        // 异或的特点：
+        // 0 ^ x = x ^ 0 = x
+        // x ^ x = 0; x ^ ~x = 1
         for (int i = 0; i < nums.length; i++) {
             miss ^= nums[i] ^ (i + 1);
         }

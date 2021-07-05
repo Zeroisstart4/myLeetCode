@@ -57,16 +57,20 @@ class Solution {
             return root;
         }
 
+        // p, q 在左子树中的最近公共祖先
         TreeNode left = lowestCommonAncestor(root.left, p, q);
+        // p, q 在右子树中的最近公共祖先
         TreeNode right = lowestCommonAncestor(root.right, p, q);
 
+        // 若p, q 在左子树中的最近公共祖先为空，表示其最近公共祖先为右子树
         if(left == null) {
             return right;
         }
+        // 若p, q 在右子树中的最近公共祖先为空，表示其最近公共祖先为左子树
         if(right == null) {
             return left;
         }
-
+        // 若p, q 在右子树中的最近公共祖先不为空，表示其最近公共祖先为根节点
         return root;
     }
 }

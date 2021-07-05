@@ -59,6 +59,67 @@
 class Solution {
     public boolean isMatch(String s, String p) {
 
+        // 记录数组长度
+        int m = s.length();
+        int n = p.length();
+
+        // 创建动态规划数组, dp[i][j] 表示 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配
+        boolean[][] dp = new boolean[m + 1][n + 1];
+
+        // 初始化条件，两个空字符串是可以匹配的
+        dp[0][0] = true;
+
+        // 遍历
+        for (int i = 0; i <= m; i++) {
+            // 从 dp[0][1] 开始
+            for (int j = 1; j <= n; j++) {
+                // 若模式字符串的第 j 位为 *，则首先查看 dp[i][j - 2] 能否发生匹配( x* 匹配 0 位的情况)
+                if (p.charAt(j - 1) == '*') {
+                    // x* 匹配零位
+                    dp[i][j] = dp[i][j - 2];
+                    // 同时，查询 s 的前 i 个字符与 p 中的前 j - 1 个字符是否能够匹配( x* 匹配多位的情况)
+                    if (matches(s, p, i, j - 1)) {
+                        dp[i][j] = dp[i][j] || dp[i - 1][j];
+                    }
+                }
+                // 若模式字符串的第 j 位不为 *
+                else {
+                    // 查询 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配
+                    if (matches(s, p, i, j)) {
+                        dp[i][j] = dp[i - 1][j - 1];
+                    }
+                }
+
+            }
+        }
+
+        return dp[m][n];
+
+    }
+
+    /**
+     *  判断在没有 “*” 的条件下，s 的第 i 个字符与p 的第 j 个字符可否匹配
+     * @param s     输入字符串
+     * @param p     匹配模式
+     * @param i     s 的第 i 个字符
+     * @param j     p 的第 j 个字符
+     * @return
+     */
+    public boolean matches(String s, String p, int i, int j) {
+        // 若都为空串
+        if (i == 0 && j == 0) {
+            return true;
+        }
+        // 若仅有一个为空串
+        if (i == 0 || j == 0) {
+            return false;
+        }
+        // 若索引 j - 1 处的字符为 ‘.’， 则可以与任意一个字符匹配
+        if(p.charAt(j - 1) == '.') {
+            return true;
+        }
+        // 字符串 s 的第 i 个字符与 p 的第 j 个字符是否相等
+        return s.charAt(i - 1) == p.charAt(j - 1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

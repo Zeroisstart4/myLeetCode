@@ -45,32 +45,40 @@
  */
 class Solution {
 
+    // 用于共享变量
     int k;
     int res;
     public int kthLargest(TreeNode root, int k) {
 
         this.k = k;
+        // 逆序中序遍历，从最大值开始遍历
         dfs(root);
 
         return res;
     }
 
-
+    /**
+     *  逆序中序遍历
+     * @param root      根节点
+     */
     public void dfs(TreeNode root) {
 
+        // 健壮性判断
         if(root == null) {
             return;
         }
 
+        // 递归右子树
         dfs(root.right);
 
+        // 根节点
         if(k == 0) {
             return;
         }
         if(--k == 0) {
             res = root.val;
         }
-
+        // 递归左子树
         dfs(root.left);
     }
 }

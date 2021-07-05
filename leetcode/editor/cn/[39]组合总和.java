@@ -55,25 +55,36 @@ class Solution {
         return res;
     }
 
+
+    /**
+     *      回溯查找组合
+     * @param res           结果集
+     * @param candidates    无重复元素的数组
+     * @param list          一个组合
+     * @param target        组合的目标值
+     * @param index         无重复元素的数组索引
+     */
     private void dfs(List<List<Integer>> res, int[] candidates, List<Integer> list, int target, int index) {
 
-        //终止条件判断
+        //终止条件判断，防止数组越界异常
         if(index == candidates.length) {
             return;
         }
-
+        // 若存在组合，使得组合值为 target，则添加入结果集
         if(target == 0) {
             res.add(new ArrayList<>(list));
             return;
         }
 
-        //每一个节点都有两个分支，一个选一个不选
-        // 直接跳过
+        //每一个节点都有两个分支，选 / 不选
+        // 不选，接跳过，索引 + 1
         dfs(res, candidates, list, target, index + 1);
 
-        // 选择当前数
+        // 选，选择当前数，判断当前选择值是否小于等于目标值
         if(target - candidates[index] >= 0) {
+            // 做出选择
             list.add(candidates[index]);
+            // 进入下一层
             dfs(res, candidates, list, target - candidates[index], index);
             //撤销选择
             list.remove(list.size() - 1);

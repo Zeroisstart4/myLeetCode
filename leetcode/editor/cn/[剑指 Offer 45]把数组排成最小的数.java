@@ -35,17 +35,18 @@ import java.util.Arrays;
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public String minNumber(int[] nums) {
-
+        // 字符串数组
         String[] strs = new String[nums.length];
-
+        // 将数字转为字符串，并存入字符串数组
         for (int i = 0; i < nums.length; i++) {
             strs[i] = String.valueOf(nums[i]);
         }
-
+        // 数组排序，排序规则为 字符串 1 + 字符串 2 的字面量 < 字符串 2 + 字符串 1 的字面量
         Arrays.sort(strs, (x, y) -> (x + y).compareTo(y + x));
 
+        // 用于添加字符串
         StringBuilder res = new StringBuilder();
-
+        // 遍历
         for (String str : strs) {
             res.append(str);
         }

@@ -29,10 +29,13 @@ class Solution {
     // 递归法
     public String[] permutation(String s) {
 
+        // 将字符串转为字符数组
         char[] chars = s.toCharArray();
+        // 记录当前数组元素是否已访问
         boolean[] visited = new boolean[chars.length];
+        // 结果集
         Set<String> res = new HashSet<>();
-
+        // 回溯
         backtrack(chars, "", visited, res);
 
         return res.toArray(new String[res.size()]);

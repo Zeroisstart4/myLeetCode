@@ -70,11 +70,14 @@ class Solution {
             return 0;
         }
 
+        // 记录数组行列
         int rows = grid.length;
         int comlumns = grid[0].length;
 
+        // 创建动态规划数组
         int[][] dp = new int[rows + 1][comlumns + 1];
 
+        // 从左上角开始，获取最大礼物价值
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < comlumns; j++) {
                 dp[i + 1][j + 1] = Math.max(dp[i][j + 1], dp[i + 1][j]) + grid[i][j];

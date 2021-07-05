@@ -65,27 +65,31 @@
 class Solution {
     public boolean isMatch(String s, String p) {
 
+        // 记录字符串长度
         int m = s.length();
         int n = p.length();
 
-        // 表示 s 的前 i 个字符与 p 中的前 j 个字符是否能够匹配
+        // 创建动态规划数组
         boolean[][] dp = new boolean[m + 1][n + 1];
-
-        // 两个空字符串是可以匹配的
+        // 皆为空字符可发生匹配
         dp[0][0] = true;
 
+        // 遍历字符
         for (int i = 0; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
-
+                // 若字符为 *
                 if (p.charAt(j - 1) == '*') {
+                    // x* 不匹配任意字符
                     dp[i][j] = dp[i][j - 2];
-
-                    if(matches(s, p, i, j - 1)) {
+                    // x* 匹配任意字符
+                    if (matches(s, p, i, j - 1)) {
                         dp[i][j] = dp[i][j] || dp[i - 1][j];
                     }
                 }
+                // 若字符不为 *
                 else {
-                    if (matches(s, p, i, j)) {
+                    // 若满足匹配规则，则 dp[i][j] 的匹配情况与 dp[i - 1][j - 1] 相同
+                    if(matches(s, p, i, j)) {
                         dp[i][j] = dp[i - 1][j - 1];
                     }
                 }
@@ -95,17 +99,34 @@ class Solution {
         return dp[m][n];
     }
 
+    /**
+     *  在没有 * 情况下的字符匹配
+     * @param s     代匹配字符串
+     * @param p     匹配规则字符串
+     * @param i     代匹配字符索引
+     * @param j     匹配规则字符索引
+     * @return
+     */
     public boolean matches(String s, String p, int i, int j) {
 
-        if(i == 0) {
-            return false;
+        // 若皆为空字符，可发生匹配
+        if (i == 0 && j == 0) {
+            return true;
         }
 
+        // 若仅有一个为空字符，不可匹配
+        if (i == 0 || j == 0) {
+            return false;
+        }
+        // 若匹配规则字符为 . 可匹配任意一位字符
         if(p.charAt(j - 1) == '.') {
             return true;
         }
 
+        // 检查字符是否相同
         return s.charAt(i - 1) == p.charAt(j - 1);
     }
+
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

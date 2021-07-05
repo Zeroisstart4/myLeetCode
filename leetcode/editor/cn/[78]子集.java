@@ -65,7 +65,6 @@ class Solution {
         //走选择这个分支
         list.add(nums[index]);
         dfs(res, nums, list, index + 1);
-
         //撤销选择
         list.remove(list.size() - 1);
     }

@@ -66,6 +66,7 @@ class Solution {
     public int[] twoSum(int[] nums, int target) {
         // 创建哈希 Map
         Map<Integer, Integer> hashtable = new HashMap<Integer, Integer>();
+        // 遍历
         for (int i = 0; i < nums.length; ++i) {
             // 在每次添加元素前检查 map 中是否有与之匹配的元素
             if (hashtable.containsKey(target - nums[i])) {
@@ -76,19 +77,6 @@ class Solution {
         return new int[0];
     }
 
-    /*public int[] twoSum(int[] nums, int target) {
-
-        Map<Integer, Integer> map = new HashMap<>();
-
-        for (int i = 0; i < nums.length; i++) {
-
-            if(map.containsKey(target - nums[i])) {
-                return new int[]{i, map.get(target - nums[i])};
-            }
-
-            map.put(nums[i], i);
-        }
-    }*/
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

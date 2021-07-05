@@ -86,13 +86,16 @@ class Solution {
             // 检索并删除此列表的头（第一个元素）。
             TreeNode node = queue.poll();
 
+            // 添加左子节点（如果存在）
             if(node.left != null) {
                 queue.offer(node.left);
             }
+            // 添加右子节点（如果存在）
             if(node.right != null) {
                 queue.offer(node.right);
             }
 
+            // 交换节点
             TreeNode temp = node.left;
             node.left = node.right;
             node.right = temp;
