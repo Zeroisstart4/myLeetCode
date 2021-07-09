@@ -45,10 +45,45 @@
 // 👍 897 👎 0
 
 
+import java.util.Arrays;
+import java.util.Comparator;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[][] reconstructQueue(int[][] people) {
 
+        Arrays.sort(people, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] preson1, int[] preson2) {
+                if (preson1[0] != preson2[0]) {
+                    return preson1[0] - preson2[0];
+                }
+                else {
+                    return preson2[1] - preson1[1];
+                }
+            }
+        });
+
+
+        int n = people.length;
+        int[][] ans = new int[n][];
+
+        for (int[] person : people) {
+
+            int space = person[1] + 1;
+
+            for (int i = 0; i < n; i++) {
+                if (ans[i] == null) {
+                    space--;
+                    if (space == 0) {
+                        ans[i] = person;
+                        break;
+                    }
+                }
+            }
+        }
+
+        return ans;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

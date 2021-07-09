@@ -32,10 +32,13 @@
 // 👍 2377 👎 0
 
 
+import java.util.Map;
+import java.util.Stack;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
 
-    public int trap(int[] height) {
+    /*public int trap(int[] height) {
 
         if (height == null || height.length == 0) {
             return 0;
@@ -64,6 +67,32 @@ class Solution {
         }
 
         return ans;
+    }*/
+
+    public int trap(int[] height) {
+
+        int sum = 0;
+
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < height.length; i++) {
+
+            while (!stack.isEmpty() && height[i] > height[stack.peek()]) {
+                int h = height[stack.peek()];
+                stack.pop();
+                if (stack.isEmpty()) {
+                    break;
+                }
+                int distance = i - stack.peek() - 1;
+                int min = Math.min(height[stack.peek()], height[i]);
+
+                sum = sum + distance * (min - h);
+            }
+
+            stack.push(i);
+        }
+
+        return sum;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -39,6 +39,33 @@
 class Solution {
     public int maxCoins(int[] nums) {
 
+        // 记录数组长度
+        int n = nums.length;
+        // 动态规划数组  dp[i][j] 表示填满开区间 (i,j) 能得到的最多硬币数
+        int[][] dp = new int[n + 2][n + 2];
+        // val 数组，用于计算乘积
+        int[] val = new int[n + 2];
+        val[0] = val[n + 1] = 1;
+
+        for (int i = 1; i <= n; i++) {
+            val[i] = nums[i - 1];
+        }
+
+        // 该气球的前一气球
+        for (int i = n - 1; i >= 0; i--) {
+            // 该气球的后一气球
+            for (int j = i + 2; j <= n + 1; j++) {
+                // 戳破的气球对应的索引
+                for (int k = i + 1; k < j; k++) {
+
+                    int sum = val[i] * val[j] * val[k];
+                    sum += dp[i][k] + dp[k][j];
+                    dp[i][j] = Math.max(dp[i][j], sum);
+                }
+            }
+        }
+
+        return dp[0][n + 1];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

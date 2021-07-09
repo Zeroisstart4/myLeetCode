@@ -35,10 +35,73 @@
 // 👍 794 👎 0
 
 
+import org.apache.lucene.util.automaton.CharacterRunAutomaton;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+    // 字符串共享
+    String src;
+    // 字符串索引
+    int ptr;
+
     public String decodeString(String s) {
 
+        src = s;
+        ptr = 0;
+
+        return getString();
     }
+
+    public String getString() {
+
+        // 递归中止条件
+        if (ptr == src.length() || src.charAt(ptr) == ']') {
+            return "";
+        }
+
+        // 获取当前元素
+        char cur = src.charAt(ptr);
+        // 重复次数
+        int repTime = 1;
+        // 结果字符串
+        String res = "";
+
+        if (Character.isDigit(cur)) {
+
+            // 解析 Digits
+            repTime = getDigits();
+            // 过滤左括号
+            ptr++;
+            // 解析 String
+            String str = getString();
+            // 过滤右括号
+            ptr++;
+            // 构造字符串
+            while (repTime-- > 0) {
+                res += str;
+            }
+        }
+        else if (Character.isLetter(cur)) {
+            res += String.valueOf(src.charAt(ptr++));
+        }
+
+        return res + getString();
+    }
+
+    /**
+     * 字符串转数字
+     * @return
+     */
+    public int getDigits() {
+        // 结果值
+        int res = 0;
+        // 若索引小于字符串长度且索引对应的元素为 0 - 9 的字符时
+        while (ptr < src.length() && Character.isDigit(src.charAt(ptr))) {
+            res = res * 10 + (src.charAt(ptr++) - '0');
+        }
+        return res;
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -32,10 +32,57 @@
 // 👍 763 👎 0
 
 
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.PriorityQueue;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+    // 堆排序
     public int[] topKFrequent(int[] nums, int k) {
 
+        // 统计元素出现的个数
+        Map<Integer, Integer> occurrences = new HashMap<>();
+
+        for (int num : nums) {
+            occurrences.put(num, occurrences.getOrDefault(num, 0) + 1);
+        }
+
+        // 创建小顶堆，以优先队列的形式实现
+        PriorityQueue<int[]> queue = new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[1] - o2[1];
+            }
+        });
+
+        // 添加出现最多的前 k 个元素
+        for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
+            // 获取对应元素的值与其出现次数
+            int num = entry.getKey();
+            int count = entry.getValue();
+
+            // 若队列已填满 k 个元素
+            if (queue.size() == k) {
+                // 将堆中的最小出现次数与当前值的出现次数进行对比，若 < 则将其淘汰
+                if (queue.peek()[1] < count) {
+                    queue.poll();
+                    queue.offer(new int[]{num, count});
+                }
+            }
+            else {
+                queue.offer(new int[]{num, count});
+            }
+        }
+
+        int[] res = new int[k];
+
+        for (int i = 0; i < k; i++) {
+            res[i] = queue.poll()[0];
+        }
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

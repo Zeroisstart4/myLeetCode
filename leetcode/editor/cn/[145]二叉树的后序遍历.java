@@ -20,6 +20,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 /**
  * Definition for a binary tree node.
@@ -38,7 +39,8 @@ import java.util.List;
  */
 class Solution {
     List<Integer> res = new ArrayList<>();
-    public List<Integer> postorderTraversal(TreeNode root) {
+    // 递归式
+    /*public List<Integer> postorderTraversal(TreeNode root) {
 
         // 边界条件判断
         if(root == null) {
@@ -52,6 +54,35 @@ class Solution {
         // 添加父节点的值
         res.add(root.val);
 
+        return res;
+    }*/
+
+    // 非递归式
+    public List<Integer> postorderTraversal(TreeNode root) {
+
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        TreeNode p = root;
+        // 通过lastVisit标识右子节点是否已经弹出
+        TreeNode lastVisit = root;
+        while (p != null || !stack.isEmpty()) {
+            while (p != null) {
+                stack.push(p);
+                p = p.left;
+            }
+            //查看当前栈顶元素
+            p = stack.peek();
+            //如果其右子树也为空，或者右子树已经访问，则可以访问
+            if (p.right == null || p.right == lastVisit) {
+                res.add(p.val);
+                stack.pop();
+                // 标记当前这个节点已经弹出过
+                lastVisit = p;
+                p = null;
+            } else {
+                //否则继续遍历右子树
+                p = p.right;
+            }
+        }
         return res;
     }
 }
