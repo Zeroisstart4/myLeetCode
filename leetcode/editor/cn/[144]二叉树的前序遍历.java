@@ -92,9 +92,8 @@ class Solution {
         return res;
     }*/
 
-
     // 非递归式
-    public List<Integer> preorderTraversal(TreeNode root) {
+    /*public List<Integer> preorderTraversal(TreeNode root) {
 
         Stack<TreeNode> stack = new Stack<TreeNode>();
 
@@ -115,7 +114,45 @@ class Solution {
         }
 
         return res;
+    }*/
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        List<Integer> res = new ArrayList<>();
+
+        if (root == null) {
+            return res;
+        }
+
+        TreeNode cur = root;
+
+        while (cur != null) {
+
+            if (cur.left == null) {
+                res.add(cur.val);
+                cur = cur.right;
+            }
+            else {
+                TreeNode temp = cur.left;
+                while (temp.right != null && temp.right != cur) {
+                    temp = temp.right;
+                }
+                if (temp.right == null) {
+                    //输出当前节点
+                    res.add(cur.val);
+                    //找到当前节点的前驱节点
+                    temp.right = cur;
+                    cur = cur.left;
+                }
+                else {
+                    temp.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+        return res;
     }
+
 
 
 }

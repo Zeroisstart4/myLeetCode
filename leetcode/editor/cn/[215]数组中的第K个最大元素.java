@@ -63,5 +63,50 @@ class Solution {
         nums[i] = nums[j];
         nums[j] = temp;
     }
+
+
+
+
+/*    public int findKthLargest(int[] nums, int k) {
+        int heapSize = nums.length;
+        buildHeap(nums, heapSize);
+        for (int i = nums.length - 1; i >= nums.length - k + 1; i--) {
+            swap(nums, 0, i);
+            heapSize--;
+            adjustHeap(nums, 0, heapSize);
+        }
+        return nums[0];
+    }
+
+    public void buildHeap(int[] nums, int heapSize) {
+        for (int i = heapSize / 2; i >= 0; i--) {
+            adjustHeap(nums, i, heapSize);
+        }
+    }
+
+    public void adjustHeap(int[] nums, int i, int heapSize) {
+
+        int parent = i;
+        int left = 2 * i + 1;
+        int right = 2 * i + 2;
+
+        if (left < heapSize && nums[left] > nums[parent]) {
+            parent = left;
+        }
+        if (right < heapSize && nums[right] > nums[parent]) {
+            parent = right;
+        }
+
+        if (parent != i) {
+            swap(nums, i, parent);
+            adjustHeap(nums, parent, heapSize);
+        }
+    }
+
+    public void swap(int[] nums, int i, int j) {
+        int temp = nums[i];
+        nums[i] = nums[j];
+        nums[j] = temp;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -70,5 +70,25 @@ class Solution {
         // 检查树的长度是否相符，同时递归检测左、右子树是否也是 BST
         return cur == right && recur(postorder, left, mid - 1) && recur(postorder, mid, right - 1);
     }
+
+    /*public boolean recur(int[] postorder, int left, int right) {
+
+        if (left > right) {
+            return false;
+        }
+
+        int cur = left;
+        while (postorder[cur] < postorder[right]) {
+            cur++;
+        }
+
+        int mid = cur;
+
+        while (postorder[cur] > postorder[right]) {
+            cur++;
+        }
+
+        return cur == right && recur(postorder, left, mid - 1) && recur(postorder, mid, right - 1);
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

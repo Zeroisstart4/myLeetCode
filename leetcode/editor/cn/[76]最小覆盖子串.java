@@ -98,5 +98,58 @@ class Solution {
 
         return len == Integer.MAX_VALUE ? "" : s.substring(start, len + start);
     }
+
+
+    /*public String minWindow(String s, String t) {
+
+        Map<Character, Integer> needs = new HashMap<>();
+        Map<Character, Integer> windows = new HashMap<>();
+
+        for (int i = 0; i < t.length(); i++) {
+            char ch = t.charAt(i);
+            needs.put(ch, needs.getOrDefault(ch, 0) + 1);
+        }
+
+        int left = 0;
+        int right = 0;
+        int valid = 0;
+        int start = 0;
+        int len = Integer.MAX_VALUE;
+
+        while (right < s.length()) {
+
+            char c = s.charAt(right);
+            right++;
+
+            if (needs.containsKey(c)) {
+
+                windows.put(c, windows.getOrDefault(c, 0) + 1);
+                if (windows.get(c).equals(needs.get(c))) {
+                    valid++;
+                }
+            }
+
+            while (valid == needs.size()) {
+
+                if (right - left < len) {
+                    start = left;
+                    len = right - left;
+                }
+
+                char rem = s.charAt(left);
+                left++;
+
+                if (needs.containsKey(rem)) {
+
+                    if (windows.get(rem).equals(needs.get(rem))) {
+                        valid--;
+                    }
+                    windows.put(rem, windows.getOrDefault(rem, 0) - 1);
+                }
+            }
+        }
+
+        return len == Integer.MAX_VALUE ? "" : s.substring(start, start + len);
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -35,6 +35,9 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+import java.util.List;
+
 /**
  * Definition for singly-linked list.
  * public class ListNode {
@@ -86,5 +89,42 @@ class Solution {
         head.next = successor;
         return last;
     }
+
+
+    /*public ListNode reverseBetween(ListNode head, int left, int right) {
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        if (left == 1) {
+            return reverseN(head, right);
+        }
+
+        head.next = reverseBetween(head.next, left - 1, right - 1);
+
+        return head;
+    }
+
+    ListNode pre = null;
+    public ListNode reverseN(LsitNode head, int n) {
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        if (n == 1) {
+            pre = head.next;
+            return head;
+        }
+
+        ListNode newHead = reverseN(head.next, n - 1);
+
+        head.next.next = head;
+        head.next = pre;
+
+        return newHead;
+    }*/
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

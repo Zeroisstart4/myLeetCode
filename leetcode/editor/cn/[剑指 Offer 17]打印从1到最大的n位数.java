@@ -31,5 +31,16 @@ class Solution {
         }
         return arr;
     }
+
+    /*public int[] printNumbers(int n) {
+        int end = Math.pow(10, n) - 1;
+        int[] arr = new int[end];
+
+        for (int i = 0; i < end; i++) {
+            arr[i] = i + 1;
+        }
+
+        return arr;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

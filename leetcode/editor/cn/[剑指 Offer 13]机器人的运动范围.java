@@ -69,5 +69,43 @@ class Solution {
         }
         return sum;
     }
+
+
+
+
+/*    int res = 0;
+    boolean[][] visited;
+    public int movingCount(int m, int n, int k) {
+        visited = new boolean[m][n];
+        dfs(0, 0, m, n, k);
+        return res;
+    }
+
+    private void dfs(int i, int j, int m, int n, int k) {
+        if (i < 0 || i >= m || j < 0 || j >= n || visited[i][j]) {
+            return;
+        }
+        if (getSum(i) + getSum(j) > k) {
+            return;
+        }
+        visited[i][j] = true;
+        res++;
+
+        dfs(i + 1, j, m, n, k);
+        dfs(i - 1, j, m, n, k);
+        dfs(i, j - 1, m, n, k);
+        dfs(i, j + 1, m, n, k);
+    }
+
+    private int getSum(int num) {
+
+        int sum = 0;
+        while (num != 0) {
+            sum += num % 10;
+            num /= 10;
+        }
+
+        return sum;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

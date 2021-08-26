@@ -117,5 +117,22 @@ class Solution {
         }
     }
 
+    /*public int romanToInt(String s) {
+
+        int n = s.length();
+        int ans = 0;
+
+        for (int i = 0; i < n; i++) {
+            if (i + 1 < n && getValue(s.charAt(i)) < getValue(s.charAt(i + 1))) {
+                ans -= getValue(s.charAt(i));
+            }
+            else {
+                ans += getValue(s.charAt(i));
+            }
+        }
+
+        return ans;
+    }*/
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

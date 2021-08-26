@@ -36,7 +36,7 @@ import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public boolean checkInclusion(String s1, String s2) {
+    /*public boolean checkInclusion(String s1, String s2) {
 
         if(s1.length() > s2.length()) {
             return false;
@@ -83,6 +83,53 @@ class Solution {
                 }
             }
 
+        }
+
+        return false;
+    }*/
+
+    public boolean checkInclusion(String s1, String s2) {
+
+        if (s1.length() > s2.length()) {
+            return false;
+        }
+
+        HashMap<Character, Integer> needs = new HashMap<>();
+        HashMap<Character, Integer> windows = new HashMap<>();
+
+        for (char c : s1.toCharArray()) {
+            needs.put(c, windows.getOrDefault(c, 0) + 1);
+        }
+
+        int left = 0;
+        int right = 0;
+        int vaild = 0;
+
+        while (right < s2.length()) {
+            char c = s2.charAt(right);
+            right++;
+            if (needs.containsKey(c)) {
+                windows.put(c, windows.getOrDefault(c, 0) + 1);
+                if (windows.get(c).equals(needs.get(c))) {
+                    vaild++;
+                }
+            }
+
+            while (right - left >= s1.length()) {
+
+                if (vaild == needs.size()) {
+                    return true;
+                }
+
+                char rem = s2.charAt(left);
+                left++;
+                if (needs.containsKey(rem)) {
+                    if (windows.get(rem).equals(needs.get(rem))) {
+                        vaild--;
+                    }
+                    windows.put(rem, windows.getOrDefault(rem, 0) - 1);
+                }
+            }
         }
 
         return false;

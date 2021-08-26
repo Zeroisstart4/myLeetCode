@@ -17,10 +17,30 @@
 // 👍 284 👎 0
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<Integer> getRow(int rowIndex) {
 
+        List<List<Integer>> results = new ArrayList<>();
+
+        for (int i = 0; i <= rowIndex; i++) {
+
+            List<Integer> row = new ArrayList<>();
+
+            for (int j = 0; j <= i; j++) {
+                if (j == 0 || j == i) {
+                    row.add(1);
+                }
+                else {
+                    row.add(results.get(i - 1).get(j - 1) + results.get(i - 1).get(j));
+                }
+            }
+        }
+
+        return results.get(rowIndex);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -41,7 +41,7 @@ class Solution {
     }*/
 
     // 迭代法
-    public ListNode reverseList(ListNode head) {
+    /*public ListNode reverseList(ListNode head) {
         // 前驱节点
         ListNode pre = null;
         // 当前节点
@@ -57,6 +57,19 @@ class Solution {
             cur = next;
         }
         return pre;
+    }*/
+
+    public ListNode reverseList(ListNode head) {
+
+        if (head == null || head.next == null) {
+            return head;
+        }
+
+        ListNode newHead = reverseList(head.next);
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

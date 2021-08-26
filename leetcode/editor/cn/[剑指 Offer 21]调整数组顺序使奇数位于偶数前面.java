@@ -50,5 +50,29 @@ class Solution {
 
         return nums;
     }
+
+    /*public int[] exchange(int[] nums) {
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+            if ((nums[left] & 1) == 1) {
+                left++;
+                continue;
+            }
+
+            if ((nums[right] & 1) == 0) {
+                right--;
+                continue;
+            }
+
+            int temp = nums[left];
+            nums[left] = nums[right];
+            nums[right] = temp;
+        }
+
+        return nums;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

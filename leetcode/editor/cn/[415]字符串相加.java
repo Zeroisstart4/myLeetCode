@@ -40,5 +40,34 @@ class Solution {
         return res.toString();
 
     }
+
+    /*public String addStrings(String num1, String num2) {
+
+        // 记录字符长度
+        int i = num1.length() - 1;
+        int j = num2.length() - 1;
+
+        // 进位
+        int carray = 0;
+        StringBuilder sb = new StringBuilder();
+
+        while (i >= 0 || j >= 0 || carray != 0) {
+
+            int x = i >= 0 ? num1.charAt(i) - '0' : 0;
+            int y = i >= 0 ? num2.charAt(j) - '0' : 0;
+
+            int sum = x + y + carray;
+
+            sb.append(sum % 10);
+            carray = sum / 10;
+
+            i--;
+            j--;
+        }
+
+        sb.reverse();
+
+        return sb.toString();
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

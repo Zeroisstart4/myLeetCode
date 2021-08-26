@@ -84,5 +84,38 @@ class Solution {
         }
         return res;
     }
+
+
+    /*public List<List<Integer>> levelOrder(TreeNode root) {
+
+        List<List<Integer>> res = new ArrayList<>();
+        if (root == null) {
+            return res;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+
+            List<Integer> levelList = new LinkedList<>();
+            int size = queue.size();
+
+            for (int i = 0; i < size; i++) {
+
+                TreeNode node = queue.poll();
+                levelList.add(node);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+
+            res.add(new LinkedList<>(levelList));
+        }
+
+        return res;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

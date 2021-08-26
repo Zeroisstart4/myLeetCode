@@ -52,23 +52,36 @@
 class Solution {
     public int rob(TreeNode root) {
 
-        int[] rootStatus = dfs(root);
-        return Math.max(rootStatus[0], rootStatus[1]);
+        int[] robHelp = robHelper(root);
+
+        return Math.max(robHelp[0], robHelp[1]);
     }
 
-    public int[] dfs(TreeNode root) {
+    /**
+     *      计算偷与不偷 root 节点所能获取的最大值
+     * @param root
+     * @return  返回一个 1 * 2 的数组，
+     *          res[0] 表示不偷 root 节点所能获取的最大值
+     *          res[1] 表示偷 root 节点所能获取的最大值
+     */
+    public int[] robHelper(TreeNode root) {
 
-        if(root == null) {
-            return new int[]{0, 0};
+        // 健壮性判断
+        if (root == null) {
+            return new int[2];
         }
 
-        int[] left = dfs(root.left);
-        int[] right = dfs(root.right);
+        // 递归左右子树，获取最大值
+        int[] left = robHelper(root.left);
+        int[] right = robHelper(root.right);
 
-        int selected = root.val + left[1] + right[1];
+        // 不偷 root 节点所能获取的最大值
         int notSelected = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        // 偷 root 节点所能获取的最大值
+        int selected = root.val + left[0] + right[0];
 
-        return new int[]{selected, notSelected};
+        return new int[]{notSelected, selected};
     }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

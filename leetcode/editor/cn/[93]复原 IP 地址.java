@@ -54,10 +54,64 @@
 // 👍 543 👎 0
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
+
+    static final int SEG_COUNT = 4;
+    int[] segments;
+    List<String> res;
     public List<String> restoreIpAddresses(String s) {
 
+        segments = new int[SEG_COUNT];
+        res = new ArrayList<>();
+
+        dfs(s, 0, 0);
+
+        return res;
     }
+
+    public void dfs(String s, int curSeg, int segStart) {
+
+        if (curSeg == SEG_COUNT) {
+            if (segStart == s.length()) {
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < SEG_COUNT; i++) {
+                    sb.append(segments[i]);
+                    if (i != SEG_COUNT - 1) {
+                        sb.append('.');
+                    }
+                }
+                res.add(sb.toString());
+            }
+            return;
+        }
+
+        if (segStart == s.length()) {
+            return;
+        }
+
+        if (s.charAt(segStart) == '0') {
+            segments[curSeg] = 0;
+            dfs(s, curSeg + 1, segStart + 1);
+        }
+
+        int addr = 0;
+
+        for (int end = segStart; end < s.length(); end++) {
+
+            addr = addr * 10 + (s.charAt(end) - '0');
+            if (0 < addr && addr <= 255) {
+                segments[curSeg] = addr;
+                dfs(s, curSeg + 1, end + 1);
+            }
+            else {
+                break;
+            }
+        }
+    }
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -81,5 +81,26 @@ class Solution {
         arr.add(head.val);
     }
 
+
+/*    public int[] reversePrint(ListNode head) {
+
+        recur(head);
+
+        int[] res = new int[arr.size()];
+        for (int i = 0; i < arr.size(); i++) {
+            res[i] = arr.get(i);
+        }
+
+        return res;
+    }
+
+    void recur(ListNode head) {
+        if (head == null) {
+            return;
+        }
+
+        recur(head.next);
+        arr.add(head.val);
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -58,7 +58,7 @@ class Solution {
     }*/
 
     // 非递归式
-    public List<Integer> postorderTraversal(TreeNode root) {
+    /*public List<Integer> postorderTraversal(TreeNode root) {
 
         Stack<TreeNode> stack = new Stack<TreeNode>();
         TreeNode p = root;
@@ -81,6 +81,47 @@ class Solution {
             } else {
                 //否则继续遍历右子树
                 p = p.right;
+            }
+        }
+        return res;
+    }*/
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> res = new ArrayList<>();
+
+        if (root == null) {
+            return res;
+        }
+
+        TreeNode virNode = new TreeNode(-1);
+
+        virNode.left = root;
+        TreeNode cur = virNode;
+
+        while (cur != null) {
+            if (cur.left == null) {
+                cur = cur.right;
+            }
+            else {
+                TreeNode temp = cur.left;
+                while (temp.right != null && temp.right != cur) {
+                    temp = temp.right;
+                }
+                if (temp.right == null) {
+                    temp.right = cur;
+                    cur = cur.left;
+                }
+                else {
+                    temp.right = null;
+                    TreeNode t = cur.left;
+                    List<Integer> tempList = new ArrayList<>();
+                    while (t != null) {
+                        tempList.add(0, t.val);
+                        t = t.left;
+                    }
+                    res.addAll(res);
+                    cur = cur.right;
+                }
             }
         }
         return res;

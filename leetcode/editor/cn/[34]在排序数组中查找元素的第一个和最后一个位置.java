@@ -45,26 +45,36 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-        int leftIdx = binarySearch(nums, target, true);
-        int rightIdx = binarySearch(nums, target, false) - 1;
-        if (leftIdx <= rightIdx && rightIdx < nums.length && nums[leftIdx] == target && nums[rightIdx] == target) {
-            return new int[]{leftIdx, rightIdx};
+
+        int left = binarySearch(nums, target, true);
+        int right = binarySearch(nums, target, false) - 1;
+
+        if (right < nums.length && left <= right && nums[left] == target && nums[right] == target) {
+            return new int[]{left, right};
         }
+
         return new int[]{-1, -1};
     }
 
-    public int binarySearch(int[] nums, int target, boolean lower) {
-        int left = 0, right = nums.length - 1, ans = nums.length;
+    public int binarySearch(int[] nums, int target, boolean isLower) {
+
+        int n = nums.length;
+        int left = 0;
+        int right = n - 1;
+        int res = n;
         while (left <= right) {
-            int mid = (left + right) / 2;
-            if (nums[mid] > target || (lower && nums[mid] >= target)) {
+
+            int mid = left + (right - left) / 2;
+            if (target < nums[mid] || (isLower && target <= nums[mid])) {
                 right = mid - 1;
-                ans = mid;
-            } else {
+                res = mid;
+            }
+            else {
                 left = mid + 1;
             }
         }
-        return ans;
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

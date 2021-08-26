@@ -108,5 +108,29 @@ class Solution {
         // 获取新链表的头指针
         return map.get(head);
     }
+
+
+    /*public Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
+
+        HashMap<Node, Node> map = new HashMap<>();
+
+        ListNode cur = head;
+        while (cur != null) {
+            map.put(cur, new Node(cur.val));
+            cur = cur.next;
+        }
+
+        cur = head;
+
+        while (cur != null) {
+            map.get(cur).next = map.get(cur.next);
+            map.get(cur).random = map.get(cur.random);
+        }
+
+        return map.get(head);
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

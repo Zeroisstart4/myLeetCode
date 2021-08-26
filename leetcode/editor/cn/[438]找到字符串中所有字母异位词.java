@@ -43,11 +43,12 @@
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    public List<Integer> findAnagrams(String s, String p) {
+    /*public List<Integer> findAnagrams(String s, String p) {
 
         ArrayList<Integer> res = new ArrayList<>();
         Map<Character, Integer> need = new HashMap<>();
@@ -83,6 +84,57 @@ class Solution {
                 if(need.containsKey(rem)) {
 
                     if(need.get(rem).equals(windows.get(rem))) {
+                        valid--;
+                    }
+                    windows.put(rem, windows.getOrDefault(rem, 0) - 1);
+                }
+            }
+        }
+
+        return res;
+    }*/
+
+
+    public List<Integer> findAnagrams(String s, String p) {
+
+        List<Integer> res = new ArrayList<>();
+
+        if (s.length() < p.length()) {
+            return res;
+        }
+
+        HashMap<Character, Integer> needs = new HashMap<>();
+        HashMap<Character, Integer> windows = new HashMap<>();
+
+        for (char c : p.toCharArray()) {
+            needs.put(c, needs.getOrDefault(c, 0) + 1);
+        }
+
+        int left = 0;
+        int right = 0;
+        int valid = 0;
+
+        while (right < s.length()) {
+            char ch = s.charAt(right);
+            right++;
+
+            if (needs.containsKey(ch)) {
+                windows.put(ch, windows.getOrDefault(ch, 0) + 1);
+                if (windows.get(ch).equals(needs.get(ch))) {
+                    valid++;
+                }
+            }
+
+            while (right - left >= p.length()) {
+                if (valid == needs.size()) {
+                    res.add(left);
+                }
+
+                char rem = s.charAt(left);
+                left++;
+                if (needs.containsKey(rem)) {
+
+                    if (windows.get(rem).equals(needs.get(rem))) {
                         valid--;
                     }
                     windows.put(rem, windows.getOrDefault(rem, 0) - 1);

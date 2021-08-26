@@ -96,5 +96,27 @@ class Solution {
         //我们要理解递归的本质，当递归往下传递的时候他最后还是会往回走，我们把这个值使用完之后还要把它给移除，这就是回溯
         list.remove(list.size() - 1);
     }
+
+
+    /*private void dfs(TreeNode root, int target, int sum, List<Integer> list, List<List<Integer>> res) {
+
+        if (root == null) {
+            return;
+        }
+        list.add(root.val);
+        sum += root.val;
+
+        if (sum == target) {
+            list.add(new ArrayList<>(list));
+            list.remove(list.size() - 1);
+            return;
+        }
+
+        dfs(root.left, target, sum, list, res);
+        dfs(root.right, target, sum, list, res);
+
+        list.remove(list.size() - 1);
+
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

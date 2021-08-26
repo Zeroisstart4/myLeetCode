@@ -54,5 +54,15 @@ class Solution {
 
         return lowestCommonAncestor(p.val < root.val ? root.left : root.right, p, q);
     }
+
+
+    /*public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+
+        if ((root.val - p.val) * (root.val - q.val) <= 0) {
+            return root;
+        }
+
+        return lowestCommonAncestor(p.val < root.val ? root.left : root.right, p, q);
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

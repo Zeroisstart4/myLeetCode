@@ -71,5 +71,19 @@ class Solution {
 
         return res;
     }
+
+    /*public int maxSubArray(int[] nums) {
+        int sum = 0;
+        int res = nums[0];
+
+        for (int num : nums) {
+
+            sum = Math.max(sum + num, num);
+
+            res = Math.max(res, sum);
+        }
+
+        return res;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

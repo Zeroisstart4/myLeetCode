@@ -52,7 +52,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     // 二分法
-    public int findMin(int[] nums) {
+    /*public int findMin(int[] nums) {
 
         int low = 0;
         int high = nums.length - 1;
@@ -69,6 +69,33 @@ class Solution {
             }
         }
         return nums[low];
+    }*/
+
+    public int findMin(int[] nums) {
+
+        if (nums == null) {
+            return -1;
+        }
+
+        int left = 0;
+        int right = nums.length - 1;
+
+        while (left < right) {
+
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] < nums[right]) {
+                right = mid;
+            }
+            else if (nums[mid] > nums[right]) {
+                left = mid + 1;
+            }
+            else {
+                right--;
+            }
+        }
+
+        return nums[left];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -44,17 +44,41 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int maxProfit(int[] prices) {
+        // 记录数组长度
         int len = prices.length;
+        // 创建 dp 数组
         int[][] dp = new int[len][2];
 
+        // 初始金额为 0
         dp[0][0] = 0;
+        // 入当日买入股票的剩余金额
         dp[0][1] = -prices[0];
         for (int i = 1; i < len; i++) {
+            // 截至当日的最大利润 = max（前日未买股票的最大利润， 前日持有股票的最大利润 + 今日抛出股票的价值）
             dp[i][0] = Math.max(dp[i-1][0], dp[i-1][1] + prices[i]);
+            // 截至当日的花费的最小值 = max（前日花费的最小值， 前日未持有股票的最大利润 - 今日股票的价值）
             dp[i][1] = Math.max(dp[i-1][1], dp[i-1][0] - prices[i]);
         }
 
         return dp[len-1][0];
     }
+
+    /*public int maxProfit(int[] prices) {
+
+        int len = prices.length;
+
+        int[][] dp = new int[len][2];
+
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+
+        for (int i = 1; i < len; i++) {
+
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], dp[i - 1][0] - prices[i]);
+        }
+
+        return dp[n - 1][0];
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

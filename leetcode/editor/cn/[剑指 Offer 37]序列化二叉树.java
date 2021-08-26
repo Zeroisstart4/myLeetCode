@@ -96,6 +96,36 @@ public class Codec {
     }
 
 
+/*    public String rserialize(TreeNode root, String str) {
+        if (root == null) {
+            str += "None,";
+        }
+        else {
+            str += String.valueOf(root.val) + ",";
+            str = rserialize(root.left, str);
+            str = rserialize(root.right, str);
+        }
+
+        return str;
+    }
+
+    public TreeNode rdeserialize(List<String> list) {
+
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        if (list.get(0).equals("None")) {
+            list.remove(0);
+            return null;
+        }
+
+        TreeNode root = new TreeNode(Integer.valueOf(list.get(0)));
+        list.remove(0);
+        root.left = rdeserialize(list);
+        root.right = rdeserialize(list);
+
+        return root;
+    }*/
 }
 
 // Your Codec object will be instantiated and called as such:

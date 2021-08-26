@@ -31,15 +31,21 @@ import java.util.Map;
 //leetcode submit region begin(Prohibit modification and deletion)
 class LRUCache {
 
+    // 构建 Node 节点
     class Node {
 
+        // 键值对
         int key;
         int value;
 
+        // 前驱与后继节点
         Node pre;
         Node next;
 
-        public Node() {};
+        // 构造方法
+        public Node() {
+
+        }
 
         public Node(int key, int value) {
             this.key = key;
@@ -47,13 +53,20 @@ class LRUCache {
         }
     }
 
-    private Map<Integer, Node> cache = new HashMap<>();
+
+    // 当前容量
     private int size;
+    // 最大容量
     private int capacity;
-    private Node head, tail;
+    // 缓存
+    private HashMap<Integer, Node> cache;
+    // 伪首尾节点
+    Node head, tail;
+
     public LRUCache(int capacity) {
         this.size = 0;
         this.capacity = capacity;
+        cache = new HashMap<>();
 
         head = new Node();
         tail = new Node();
@@ -66,7 +79,7 @@ class LRUCache {
 
         Node node = cache.get(key);
 
-        if(node == null) {
+        if (node == null) {
             return -1;
         }
 
@@ -78,18 +91,15 @@ class LRUCache {
     public void put(int key, int value) {
 
         Node node = cache.get(key);
-
-        if(node == null) {
+        if (node == null) {
             Node newNode = new Node(key, value);
-            addToHead(newNode);
             cache.put(key, newNode);
-
+            addToHead(newNode);
             size++;
 
             if (size > capacity) {
                 Node tail = removeTail();
                 cache.remove(tail.key);
-
                 size--;
             }
         }
@@ -99,12 +109,10 @@ class LRUCache {
         }
     }
 
-    public void addToHead(Node node) {
+    public void moveToHead(Node node) {
 
-        node.pre = head;
-        node.next = head.next;
-        head.next.pre = node;
-        head.next = node;
+        removeNode(node);
+        addToHead(node);
     }
 
     public void removeNode(Node node) {
@@ -113,9 +121,13 @@ class LRUCache {
         node.next.pre = node.pre;
     }
 
-    public void moveToHead(Node node) {
-        removeNode(node);
-        addToHead(node);
+    public void addToHead(Node node) {
+
+       node.pre = head;
+       node.next = head.next;
+
+       head.next.pre = node;
+       head.next = node;
     }
 
     public Node removeTail() {
@@ -125,6 +137,7 @@ class LRUCache {
 
         return res;
     }
+
 }
 
 /**

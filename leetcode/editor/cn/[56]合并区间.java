@@ -77,5 +77,10 @@ class Solution {
 
         return merged.toArray(new int[merged.size()][]);
     }
+
+
+    public int[][] merge(int[][] intervals) {
+
+    }
 }
 //leetcode submit region end(Prohibit modification and deletion)

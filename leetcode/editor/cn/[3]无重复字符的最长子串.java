@@ -102,5 +102,34 @@ class Solution {
 
         return res;
     }
+
+    /*public int lengthOfLongestSubstring(String s) {
+
+        Map<Character, Integer> windows = new HashMap<>();
+
+        int left = 0;
+        int right = 0;
+        int len = s.length();
+        int res = 0;
+
+        while (right < len) {
+
+            char c = s.charAt(right);
+            right++;
+            windows.put(c, windows.getOrDefault(c, 0) + 1);
+
+            while (windows.get(c) > 1) {
+
+                char rem = s.charAt(left);
+                left++;
+                windows.put(rem, windows.getOrDefault(rem, 0) - 1);
+            }
+
+            res = Math.max(res, right - left);
+        }
+
+        return res;
+    }*/
+
 }
 //leetcode submit region end(Prohibit modification and deletion)

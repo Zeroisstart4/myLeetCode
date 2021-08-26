@@ -40,6 +40,10 @@
 
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -74,6 +78,23 @@ class Solution {
 
         return recur(L.left, R.right) && recur(L.right, R.left);
     }
+
+
+    /*public boolean isSymmetric(TreeNode root) {
+        return root == null ? true : recur(root.left, root.right);
+    }
+
+    boolean recur(TreeNode L, TreeNode R) {
+
+        if (L == null && R == null) {
+            return true;
+        }
+        if (L == null || R == null || L.val != R.val) {
+            return false;
+        }
+
+        return recur(L.left, R.right) && recur(L.right, R.left);
+    }*/
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

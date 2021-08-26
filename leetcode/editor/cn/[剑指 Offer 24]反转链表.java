@@ -68,5 +68,32 @@ class Solution {
         // 返回原链表中的最后一位节点
         return pre;
     }
+
+    /*public ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur.next = next;
+        }
+
+        return pre;
+    }*/
+
+    /*public ListNode reverseList(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        ListNode newHead = reverseList(head.next);
+
+        head.next.next = head;
+        head.next = null;
+
+        return newHead;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

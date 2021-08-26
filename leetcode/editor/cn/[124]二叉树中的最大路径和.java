@@ -75,5 +75,28 @@ class Solution {
         // 返回节点的最大贡献值
         return Math.max(left, right) + root.val;
     }
+
+
+/*    int ans = Integer.MIN_VALUE;
+
+    public int maxPathSum(TreeNode root) {
+
+        maxPath(root);
+        return ans;
+    }
+
+    public int maxPath(TreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        int left = Math.max(0, maxPath(root.left));
+        int right = Math.max(0, maxPath(root.right));
+
+        ans = Math.max(ans, left + root.val + right);
+
+        return Math.max(left, right) + root.val;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

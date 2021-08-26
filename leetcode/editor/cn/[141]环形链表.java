@@ -92,5 +92,28 @@ public class Solution {
         // 若快慢指针相遇，表示存在环
         return true;
     }
+
+
+    /*public boolean hasCycle(ListNode head) {
+
+        if (head == null || head.next == null) {
+            return false;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }
+        }
+
+        return false;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

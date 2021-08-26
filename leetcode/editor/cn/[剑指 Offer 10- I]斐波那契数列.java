@@ -54,5 +54,19 @@ class Solution {
         // 返回数组的第一位
         return first;
     }
+
+    /*public int fib(int n) {
+        int first  = 0;
+        int second = 1;
+        int third = first + second;
+
+        for (int i = 0; i < n; i++) {
+            third = (first + second) % 1000000007;
+            first = second;
+            second =third;
+        }
+
+        return first;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -40,7 +40,7 @@ import java.util.List;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    List<Integer> t = new ArrayList<>();
+    /*List<Integer> t = new ArrayList<>();
     List<List<Integer>> ans = new ArrayList<>();
     public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
@@ -61,7 +61,32 @@ class Solution {
        t.add(nums[cur]);
        dfs(true, cur + 1, nums);
        t.remove(t.size() - 1);
+    }*/
+
+
+    public List<List<Integer>> subsetsWithDup(int[] nums) {
+
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
     }
+
+    public void dfs(boolean choosePre, int[] nums, int index, List<Integer> list, List<List<Integer>> res) {
+
+        if (index == nums.length) {
+            res.add(new ArrayList<>(list));
+        }
+
+        dfs(false, nums, index + 1, list, res);
+
+        if (!choosePre && index > 0 && nums[index - 1] == nums[index]) {
+            return;
+        }
+
+        list.add(nums[index]);
+        dfs(true, nums, index, list, res);
+        list.remove(list.size() - 1);
+    }
+
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

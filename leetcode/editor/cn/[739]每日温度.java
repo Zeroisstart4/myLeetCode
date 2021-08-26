@@ -11,6 +11,7 @@
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
@@ -41,5 +42,30 @@ class Solution {
 
         return ans;
     }
+
+
+    /*public int[] dailyTemperatures(int[] temperatures) {
+
+        if (temperatures == null) {
+            return new int[0];
+        }
+
+
+        int len = temperatures.length;
+        int[] ans = new int[len];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = 0; i < len; i++) {
+
+            int todayTemp = temperatures[i];
+            while (!stack.isEmpty() && todayTemp > temperatures[stack.peek()]) {
+                int prev = stack.pop();
+                ans[prev] = i - prev;
+            }
+            stack.push(i);
+        }
+
+        return ans;
+    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

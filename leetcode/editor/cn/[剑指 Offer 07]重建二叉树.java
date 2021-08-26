@@ -92,5 +92,35 @@ class Solution {
     }
 
 
+/*
+    private int[] preorder;
+    HashMap<Integer, Integer> inMap = new HashMap<>();
+
+    public TreeNode buildTree(int[] preorder, int[] inorder) {
+        this.preorder = preorder;
+        for (int i = 0; i < inorder.length; i++) {
+            inMap.put(inorder[i], i);
+        }
+
+        return recur(0, 0, inorder.length - 1);
+    }
+
+    private TreeNode recur(int root, int left, int right) {
+
+        if (left > right) {
+            return null;
+        }
+
+        TreeNode newRoot = new TreeNode(preorder[root]);
+
+        Integer i = inMap.get(preorder[root]);
+
+        newRoot.left = recur(root + 1, left, i - 1);
+        newRoot.right = recur(root + 1 + i - left, i + 1, right);
+
+        return newRoot;
+    }
+*/
+
 }
 //leetcode submit region end(Prohibit modification and deletion)
