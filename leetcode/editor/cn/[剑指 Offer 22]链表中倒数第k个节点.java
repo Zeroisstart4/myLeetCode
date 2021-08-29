@@ -52,7 +52,7 @@ class Solution {
         // 快指针
         ListNode fast = head;
         // 慢指针
-        ListNode low = head;
+        ListNode slow = head;
 
         // 先使快指针后移 k 位
         for (int i = 0; i < k; i++) {
@@ -66,10 +66,10 @@ class Solution {
         // 当快指针指向空时，慢指针恰好为链表中倒数第 k 个节点
         while (fast != null) {
             fast = fast.next;
-            low = low.next;
+            slow = slow.next;
         }
 
-        return low;
+        return slow;
     }
 
     /*public ListNode getKthFromEnd(ListNode head, int k) {

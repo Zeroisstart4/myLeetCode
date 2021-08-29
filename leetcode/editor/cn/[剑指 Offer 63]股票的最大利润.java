@@ -50,7 +50,7 @@ class Solution {
     // 一次遍历
     public int maxProfit(int prices[]) {
 
-        int minPrice = Integer.MIN_VALUE;
+        int minPrice = Integer.MAX_VALUE;
         int maxProfit = 0;
 
         for (int i = 0; i < prices.length; i++) {
