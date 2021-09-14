@@ -1,0 +1,94 @@
+**题目条件**
+给定每一行的最大长度 maxWidth
+给一个字符串数组
+**题目要求**
+文本两端对齐，小于最大长度时，尽可能多的加入字符在同一行中（贪心）
+最后一行文本要求左端对齐，即字符串之间正常，最后小于最大长度部分，空格补齐
+当每行字符确定时：
+- 只有一个word：左端对齐，空格补充
+- 多个wordr时：两端对齐，若补充的空格数可以被整除则word之间添加一样长度空格
+  若不能被整除则多的空格添加在前部
+
+**解题思路**
+模拟，使满足题目要求即可
+贪心，尽可能使每一行word数量大
+**注意**
+边界条件
+
+* 
+
+```
+List<String> res;
+    public List<String> fullJustify(String[] words, int maxWidth) {
+        res = new ArrayList<>();
+        int left = 0,right =0 , n = words.length;
+        //一直循环知道最后一个单词结束直接返回
+        while (true){
+            //每次循环后，把右指针赋值给左指针
+            left = right;
+            //记录每一行可以拿到word的长度和
+            int sumLen = 0;
+            //判断条件：注意加上字符之间默认的一个空格，默认空格数量为right-left
+            while (right < n && sumLen+words[right].length()+right-left <= maxWidth){
+                sumLen += words[right++].length();
+            }
+            //判断是最后一行
+            if(right == n){
+                StringBuffer sb = new StringBuffer();
+                //把最后一行word按照要求输出
+                sb.append(appendString(words,left,right," "));
+                //末尾添加空格
+                sb.append(appendSpace(maxWidth - sb.length()));
+                //加入res中并返回
+                res.add(sb.toString());
+                return res;
+            }
+            //记录word数量
+            int numWords = right - left;
+            //记录需要补充空格数量
+            int blankSpace = maxWidth - sumLen;
+            //如果word为1
+            if(numWords == 1){
+                //按照要求添加word
+                StringBuffer sb = new StringBuffer(words[left]);
+                //末尾加入空格
+                sb.append(appendSpace(maxWidth - sb.length()));
+                //加入res中，进行下一个循环
+                res.add(sb.toString());
+                continue;
+            }
+            //记录平均空格数
+            int avgSpace = blankSpace/(numWords - 1);
+            //记录多出来的空格数
+            int extraSpace = blankSpace % (numWords - 1);
+            StringBuffer sb = new StringBuffer();
+            //多出来的空格数，平均添加到前面
+            sb.append(appendString(words, left, left+extraSpace+1, appendSpace(avgSpace + 1)));
+            sb.append(appendSpace(avgSpace));
+            //剩下的字符正常添加
+            sb.append(appendString(words, left+extraSpace+1, right,appendSpace(avgSpace)));
+            //加入res中
+            res.add(sb.toString());
+        }
+    }
+    //返回长度为n的空格字符串
+    public String appendSpace(int n){
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < n; i++) {
+            sb.append(' ');
+        }
+        return sb.toString();
+    }
+    //返回word+str+...+word+str+word形式的字符串
+    public String appendString(String[] words,int left, int right, String str){
+        //拼接第一个word
+        StringBuffer sb = new StringBuffer(words[left]);
+        //拼接str+word形式
+        for (int i = left+1; i < right; i++) {
+            sb.append(str);
+            sb.append(words[i]);
+        }
+        return sb.toString();
+    }
+```
+

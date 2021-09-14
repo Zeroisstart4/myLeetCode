@@ -52,7 +52,6 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public int[] corpFlightBookings(int[][] bookings, int n) {
-
         // 航班 i 上预订的座位总数
         int[] counter = new int[n];
 

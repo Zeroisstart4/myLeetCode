@@ -62,20 +62,20 @@ import java.util.Stack;
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode() {}
- *     TreeNode(int val) { this.val = val; }
- *     TreeNode(int val, TreeNode left, TreeNode right) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * int val;
+ * TreeNode left;
+ * TreeNode right;
+ * TreeNode() {}
+ * TreeNode(int val) { this.val = val; }
+ * TreeNode(int val, TreeNode left, TreeNode right) {
+ * this.val = val;
+ * this.left = left;
+ * this.right = right;
+ * }
  * }
  */
 class Solution {
-    List<Integer> res = new ArrayList<>();
+    //List<Integer> res = new ArrayList<>();
     // 递归式
     /*public List<Integer> preorderTraversal(TreeNode root) {
         // 边界条件判断
@@ -116,7 +116,7 @@ class Solution {
         return res;
     }*/
 
-    public List<Integer> preorderTraversal(TreeNode root) {
+    /*public List<Integer> preorderTraversal(TreeNode root) {
 
         List<Integer> res = new ArrayList<>();
 
@@ -151,9 +151,51 @@ class Solution {
             }
         }
         return res;
+    }*/
+
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        // 结果集合
+        List<Integer> res = new ArrayList<>();
+        // 健壮性判断
+        if (root == null) {
+            return res;
+        }
+
+        // 当前节点
+        TreeNode cur = root;
+        // 遍历二叉树
+        while (cur != null) {
+
+            // 若无左子树
+            if (cur.left == null) {
+                res.add(cur.val);
+                cur = cur.right;
+            }
+            // 若有左子树
+            else {
+
+                TreeNode pre = cur.left;
+                while (pre.right != null && pre.right != cur) {
+                    pre = pre.right;
+                }
+                // 若未进行线索化二叉树
+                if (pre.right == null) {
+                    res.add(cur.val);
+                    pre.right = cur;
+                    cur = cur.left;
+                }
+                // 若已进行线索化二叉树
+                else {
+                    pre.right = null;
+                    cur = cur.right;
+                }
+            }
+        }
+
+        return res;
     }
-
-
 
 }
 //leetcode submit region end(Prohibit modification and deletion)

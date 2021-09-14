@@ -70,10 +70,38 @@
 // 👍 169 👎 0
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<String> summaryRanges(int[] nums) {
 
+        List<String> res = new ArrayList<>();
+
+        int i = 0;
+        int n = nums.length;
+
+        while (i < n) {
+
+            int low = i;
+            i++;
+            while (i < n && nums[i] == nums[i - 1] + 1) {
+                i++;
+            }
+
+            int high = i - 1;
+
+            StringBuilder temp = new StringBuilder(nums[low] + "");
+            if (low < high) {
+                temp.append("->");
+                temp.append(nums[high]);
+            }
+
+            res.add(temp.toString() + "");
+        }
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

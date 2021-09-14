@@ -19,6 +19,7 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 
@@ -38,7 +39,7 @@ import java.util.Stack;
  * }
  */
 class Solution {
-    List<Integer> res = new ArrayList<>();
+    //List<Integer> res = new ArrayList<>();
     // 递归式
     /*public List<Integer> postorderTraversal(TreeNode root) {
 
@@ -86,8 +87,8 @@ class Solution {
         return res;
     }*/
 
-    public List<Integer> preorderTraversal(TreeNode root) {
-        List<Integer> res = new ArrayList<>();
+    /*public List<Integer> preorderTraversal(TreeNode root) {
+        //List<Integer> res = new ArrayList<>();
 
         if (root == null) {
             return res;
@@ -124,6 +125,49 @@ class Solution {
                 }
             }
         }
+        return res;
+    }*/
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+
+        // 遍历结果集
+        LinkedList<Integer> res = new LinkedList<>();
+
+        // 若根节点为空
+        if (root == null) {
+            return res;
+        }
+
+        // 当前节点
+        TreeNode cur = root;
+
+        // 遍历
+        while (cur != null) {
+            // 若无右子树
+            if (cur.right == null) {
+                // 添加至队头
+                res.addFirst(cur.val);
+                cur = cur.left;
+            }
+            else {
+                // 后继节点
+                TreeNode next = cur.right;
+                while (next.left != null && next.left != cur) {
+                    next = next.left;
+                }
+
+                if (next.left == null) {
+                    res.addFirst(cur.val);
+                    next.left = cur;
+                    cur = cur.right;
+                }
+                else {
+                    next.left = null;
+                    cur = cur.left;
+                }
+            }
+        }
+
         return res;
     }
 }
