@@ -102,27 +102,5 @@ class Solution {
         return roman.toString();
     }
 
-
-    public String intToRoman(int num) {
-
-        StringBuilder remoan = new StringBuilder();
-
-        for (int i = 0; i < values.length; i++) {
-
-            int value = values[i];
-            String symbol = symbols[i];
-
-            if (num >= value) {
-                num-= value;
-                remoan.append(symbol);
-            }
-
-            if (num == 0) {
-                break;
-            }
-        }
-
-        return remoan.toString();
-    }
 }
 //leetcode submit region end(Prohibit modification and deletion)
