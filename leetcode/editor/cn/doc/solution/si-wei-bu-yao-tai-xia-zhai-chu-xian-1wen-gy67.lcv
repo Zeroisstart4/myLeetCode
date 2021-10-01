@@ -1,0 +1,74 @@
+### 解题思路
+
+此处撰写解题思路
+
+### 代码
+
+* cpp
+
+```cpp
+//此题代码
+class Solution {
+public:
+    int countDigitOne(int n) {
+     long int res=0;
+     long int digit=1;
+     int high=n/10;
+     long int low=0;
+     int cur=n%10;   
+     while(cur!=0||high!=0){
+         if(cur<1){
+             res+=high*digit;
+         }else if(cur==1){
+             res+=high*digit+1+low;
+         }else{
+             res+=(high+1)*digit;
+         }
+         low+=cur*digit;
+         cur=high%10;
+         high/=10;
+         digit*=10;
+     }
+     return res;
+    }
+};
+//洛谷上编译通过的代码
+#include<iostream>
+using namespace std;
+int main()
+{    
+     int n=0;
+     int x=0;
+     cin>>n>>x;
+     long int res=0;
+     long int digit=1;
+     int high=n/10;
+     long int low=0;
+     int cur=n%10;   
+     while(cur!=0||high!=0){
+         if(x){//分x是否为0两种情况进行讨论
+         if(cur<x){
+             res+=high*digit;
+         }else if(cur==x){
+             res+=high*digit+1+low;
+         }else{
+             res+=(high+1)*digit;
+         }
+         }else{
+             if(cur){
+                 res+=high*digit;
+             }else{
+               res+=(high-1)*digit+1+low;
+             }
+             }
+         low+=cur*digit;
+         cur=high%10;
+         high/=10;
+         digit*=10;
+     }
+     cout<<res;
+    
+    return 0;
+}
+```
+

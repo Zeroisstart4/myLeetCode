@@ -86,29 +86,29 @@ class Solution {
 		}
 
 		int res = 0;
-		Stack<Integer> stack = new Stack<>();
 
 		for (int j = 0; j < cols; j++) {
 
 			int[] up = new int[rows];
 			int[] down = new int[rows];
+			Stack<Integer> stack = new Stack<>();
 
 			for (int i = 0; i < rows; i++) {
 
-				while (!stack.isEmpty() && left[stack.peek()][j] > left[i][j]) {
+				while (!stack.isEmpty() && left[stack.peek()][j] >= left[i][j]) {
 					stack.pop();
 				}
-				up[i] = stack.isEmpty() ? -1 : stack.pop();
+				up[i] = stack.isEmpty() ? -1 : stack.peek();
 				stack.push(i);
 			}
 
 			stack.clear();
 			for (int i = rows - 1; i >= 0; i--) {
 
-				while (!stack.isEmpty() && left[stack.peek()][j] > left[i][j]) {
+				while (!stack.isEmpty() && left[stack.peek()][j] >= left[i][j]) {
 					stack.pop();
 				}
-				down[i] = stack.isEmpty() ? rows : stack.pop();
+				down[i] = stack.isEmpty() ? rows : stack.peek();
 				stack.push(i);
 			}
 

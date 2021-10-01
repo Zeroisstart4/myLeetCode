@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
 <p>设计一个支持在<em>平均&nbsp;</em>时间复杂度 <strong>O(1)</strong>&nbsp;下，执行以下操作的数据结构：</p>
 
@@ -51,24 +53,58 @@ randomSet.getRandom(); // 由于 2 是集合中唯一的数字，getRandom 总�
 //leetcode submit region begin(Prohibit modification and deletion)
 class RandomizedSet {
 
+    // 键为 val, 值为 val 在 list 中的索引
+    Map<Integer, Integer> dict;
+    // 存储数据用
+    List<Integer> list;
+    // 计算随机数
+    Random random = new Random();
     /** Initialize your data structure here. */
     public RandomizedSet() {
 
+        dict = new HashMap<>();
+        list = new ArrayList<>();
     }
     
     /** Inserts a value to the set. Returns true if the set did not already contain the specified element. */
     public boolean insert(int val) {
 
+        // 若已有该数
+        if (dict.containsKey(val)) {
+            return false;
+        }
+
+        // 存入字典
+        dict.put(val, list.size());
+        // 在 list.size 处添加 val
+        list.add(list.size(), val);
+        return true;
     }
     
     /** Removes a value from the set. Returns true if the set contained the specified element. */
     public boolean remove(int val) {
 
+        // 若不存在该数
+        if (!dict.containsKey(val)) {
+            return false;
+        }
+
+        // 获取 list 的末尾元素，用于覆盖 val
+        int lastElement = list.get(list.size() - 1);
+        // 获取 val 所在的索引
+        int index = dict.get(val);
+
+        list.set(index, lastElement);
+        dict.put(lastElement, index);
+
+        list.remove(list.size() - 1);
+        dict.remove(val);
+        return true;
     }
     
     /** Get a random element from the set. */
     public int getRandom() {
-
+        return list.get(random.nextInt(list.size()));
     }
 }
 

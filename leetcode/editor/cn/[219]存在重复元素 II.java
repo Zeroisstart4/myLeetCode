@@ -21,10 +21,25 @@
 // 👍 260 👎 0
 
 
+import java.util.HashSet;
+import java.util.Set;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean containsNearbyDuplicate(int[] nums, int k) {
 
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (!set.add(nums[i])) {
+                return true;
+            }
+
+            if (set.size() > k) {
+                set.remove(nums[i - k]);
+            }
+        }
+
+        return false;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

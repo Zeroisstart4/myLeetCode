@@ -92,9 +92,39 @@ class Node {
 };
 */
 
+import java.util.Stack;
+
 class Solution {
     public Node flatten(Node head) {
-        
+
+        if (head == null) {
+            return head;
+        }
+
+        Node dummy = new Node(0, null, head, null);
+        Node cur = dummy;
+        Node pre = dummy;
+
+        Stack<Node> stack = new Stack<Node>();
+        stack.push(head);
+        while (!stack.isEmpty()) {
+            cur = stack.pop();
+            pre.next = cur;
+            cur.prev = pre;
+
+            if (cur.next != null) {
+                stack.push(cur.next);
+            }
+            if (cur.child != null) {
+                stack.push(cur.child);
+                cur.child = null;
+            }
+
+            pre = cur;
+        }
+
+        dummy.next.prev = null;
+        return dummy.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

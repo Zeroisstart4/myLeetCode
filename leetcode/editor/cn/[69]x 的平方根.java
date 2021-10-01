@@ -64,27 +64,5 @@ class Solution {
         return res;
     }
 
-
-    /*public int mySqrt(int x) {
-
-        int left = 0;
-        int rihgt = x;
-        int res = 0;
-
-        while (left <= rihgt) {
-
-            int mid = left + (rihgt - left) / 2;
-
-            if ((long) mid * mid <= x) {
-                res = mid;
-                left = mid + 1;
-            }
-            else {
-                rihgt = mid - 1;
-            }
-        }
-
-        return res;
-    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)

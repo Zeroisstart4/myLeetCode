@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
 <p>多级双向链表中，除了指向下一个节点和前一个节点指针之外，它还有一个子链表指针，可能指向单独的双向链表。这些子列表也可能会有一个或多个自己的子项，依此类推，生成多级数据结构，如下面的示例所示。</p>
 
@@ -104,7 +106,47 @@ class Node {
 
 class Solution {
     public Node flatten(Node head) {
-        
+
+        // 健壮性判断
+        if (head == null) {
+            return head;
+        }
+
+        // 设置哑元节点
+        Node dummy = new Node(0, null, head, null);
+        // 前驱与后继节点
+        Node cur = dummy;
+        Node pre = dummy;
+
+        Stack<Node> stack = new Stack<Node>();
+        // 头节点压栈
+        stack.push(head);
+
+        // 遍历
+        while (!stack.isEmpty()) {
+            // 弹出栈顶节点
+            cur = stack.pop();
+            // 建立链表关系
+            pre.next = cur;
+            cur.prev = pre;
+
+            // 后继节点压栈
+            if (cur.next != null) {
+                stack.push(cur.next);
+            }
+            // 子节点压栈
+            if (cur.child != null) {
+                stack.push(cur.child);
+                // 记得将子节点置为空
+                cur.child = null;
+            }
+            // 后移前驱节点
+            pre = cur;
+        }
+
+        // 将头节点的前驱节点置为空
+        dummy.next.prev = null;
+        return dummy.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

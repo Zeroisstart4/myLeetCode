@@ -39,6 +39,10 @@
 */
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -57,6 +61,31 @@
 class Solution {
     public int pathSum(TreeNode root, int targetSum) {
 
+		Map<Integer, Integer> preSum = new HashMap<>();
+		preSum.put(0, 1);
+		return recur(root, preSum, targetSum, 0);
     }
+
+	public int recur(TreeNode root, Map<Integer, Integer> preSum, int targetSum, int currSum) {
+
+		if (root == null) {
+			return 0;
+		}
+
+		int res = 0;
+
+		currSum += root.val;
+
+		res += preSum.getOrDefault(currSum - targetSum, 0);
+
+		preSum.put(currSum, preSum.getOrDefault(currSum, 0) + 1);
+
+		res += recur(root.left, preSum, targetSum, currSum);
+		res += recur(root.right, preSum, targetSum, currSum);
+
+		preSum.put(currSum, preSum.getOrDefault(currSum, 0) - 1);
+
+		return res;
+	}
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -38,6 +38,7 @@ class Solution {
                     row.add(results.get(i - 1).get(j - 1) + results.get(i - 1).get(j));
                 }
             }
+            results.add(row);
         }
 
         return results.get(rowIndex);
