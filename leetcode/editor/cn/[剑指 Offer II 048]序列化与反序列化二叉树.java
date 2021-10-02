@@ -52,6 +52,11 @@
 */
 
 //leetcode submit region begin(Prohibit modification and deletion)
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Definition for a binary tree node.
  * public class TreeNode {
@@ -63,15 +68,57 @@
  */
 public class Codec {
 
+    // 分隔符
+    String SEP = ",";
+    // 空节点
+    String NULL = "none";
     // Encodes a tree to a single string.
     public String serialize(TreeNode root) {
-        
+
+        StringBuilder sb = new StringBuilder();
+        serialize(root, sb);
+        return sb.toString();
+    }
+
+    public void serialize(TreeNode root, StringBuilder str) {
+
+        // 若为空树
+        if (root == null) {
+            str.append(NULL).append(SEP);
+            return;
+        }
+        // 前序遍历
+        str.append(root.val).append(SEP);
+        serialize(root.left, str);
+        serialize(root.right, str);
     }
 
     // Decodes your encoded data to tree.
     public TreeNode deserialize(String data) {
-        
+
+        String[] dataArray = data.split(",");
+        LinkedList<String> dataList = new LinkedList<>(Arrays.asList(dataArray));
+        return deserialize(dataList);
     }
+
+    public TreeNode deserialize(List<String> data) {
+        // 若为空树
+        if (data.get(0).equals(NULL)) {
+            data.remove(0);
+            return null;
+        }
+        // 解析头节点
+        TreeNode root = new TreeNode(Integer.parseInt(data.get(0)));
+        // 记得移除元素
+        data.remove(0);
+        // 递归左右子树
+        root.left = deserialize(data);
+        root.right = deserialize(data);
+
+        return root;
+    }
+
+
 }
 
 // Your Codec object will be instantiated and called as such:

@@ -35,10 +35,51 @@
 // Related Topics 数组 回溯 👍 677 👎 0
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public List<List<Integer>> combine(int n, int k) {
 
+        List<List<Integer>> res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+        if (n < 1 || k < 0) {
+            return res;
+        }
+        dfs(res, list, 1, n, k);
+
+        return res;
+    }
+
+    /**
+     *      DFS
+     * @param res       结果集数组
+     * @param list      一个结果集
+     * @param cur       当前值 （1 - n）
+     * @param n         最大值
+     * @param k         个数
+     */
+    public void dfs(List<List<Integer>> res, List<Integer> list, int cur, int n, int k) {
+
+        // 减枝， 若结果集中元素个数 + 待添加元素个数仍小于 k, 则无法拼接出结果，裁去
+        if (list.size() + (n - cur + 1) < k) {
+            return;
+        }
+
+        // 满足条件结果
+        if (list.size() == k) {
+            res.add(new ArrayList<>(list));
+            return;
+        }
+
+        // 不添加 cur, 进入下一层
+        dfs(res, list, cur + 1, n, k);
+
+        // 添加 cur, 进入下一层
+        list.add(cur);
+        dfs(res, list, cur + 1, n, k);
+        list.remove(list.size() - 1);
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
