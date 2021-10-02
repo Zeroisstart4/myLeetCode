@@ -46,24 +46,7 @@
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    /*public int reverse(int x) {
-        int res = 0;
-        while(x != 0) {
-            //每次取末尾数字
-            int tmp = x % 10;
-            //判断是否 大于 最大32位整数
-            if (res > 214748364 || (res == 214748364 && tmp > 7)) {
-                return 0;
-            }
-            //判断是否 小于 最小32位整数
-            if (res < -214748364 || (res == -214748364 && tmp < -8)) {
-                return 0;
-            }
-            res = res * 10 + tmp;
-            x /= 10;
-        }
-        return res;
-    }*/
+
     public int reverse(int x) {
         int res = 0;
         while (x != 0) {
@@ -78,27 +61,6 @@ class Solution {
                 return 0;
             }
 
-            res = res * 10 + digit;
-            x /= 10;
-        }
-
-        return res;
-    }
-
-    public int reverse(int x) {
-
-        int res = 0;
-
-        while (x != 0) {
-
-            int digit = x % 10;
-
-            if (res > Integer.MAX_VALUE / 10 || res == Integer.MAX_VALUE / 10 && digit > 7) {
-                return 0;
-            }
-            if (res < Integer.MIN_VALUE / 10 || res == Integer.MIN_VALUE / 10 && digit < -8) {
-                return 0;
-            }
             res = res * 10 + digit;
             x /= 10;
         }

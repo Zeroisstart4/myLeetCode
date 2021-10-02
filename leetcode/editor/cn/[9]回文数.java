@@ -53,11 +53,16 @@
 class Solution {
     // 双指针
     public boolean isPalindrome(int x) {
+
+        // 数字转字符串
         char[] arr = String.valueOf(x).toCharArray();
+        // 左右指针
         int left = 0;
         int right = arr.length - 1;
 
+        // 遍历
         while (left <= right) {
+            // 发生左右指针对应字符不相等的情况
             if(arr[left] != arr[right]) {
                 return false;
             }
