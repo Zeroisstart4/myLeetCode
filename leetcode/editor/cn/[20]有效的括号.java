@@ -103,40 +103,5 @@ class Solution {
         return stack.isEmpty();
     }
 
-    /*public boolean isValid(String s) {
-
-        int n = s.length();
-        if ((n & 1) == 1) {
-            return false;
-        }
-
-        Map<Character, Character> pairs = new HashMap<>() {{
-            put(')', '(');
-            put(']', '[');
-            put('}', '{');
-        }};
-
-        Stack<Character> stack = new Stack();
-
-        for (int i = 0; i < n; i++) {
-
-            char ch = s.charAt(i);
-
-            if (pairs.containsKey(ch)) {
-
-                if (stack.isEmpty() || stack.peek() != pairs.get(ch)) {
-                    return false;
-                }
-                else {
-                    stack.pop();
-                }
-            }
-            else {
-                stack.push(ch);
-            }
-        }
-
-        return stack.isEmpty();
-    }*/
 }
 //leetcode submit region end(Prohibit modification and deletion)
