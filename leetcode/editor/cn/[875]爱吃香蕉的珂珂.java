@@ -47,6 +47,30 @@
 class Solution {
     public int minEatingSpeed(int[] piles, int h) {
 
+        int left = 0;
+        int right = 1000000000;
+
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (!possible(piles, h, mid)) {
+                left = mid + 1;
+            }
+            else {
+                right = mid;
+            }
+        }
+
+        return left;
+    }
+
+    public boolean possible(int[] piles, int h, int k) {
+
+        int time = 0;
+        for (int pile : piles) {
+            time += (pile - 1) / k + 1;
+        }
+
+        return time <= h;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -39,7 +39,7 @@ class Solution {
             return new int[]{sqrt, sqrt};
         }
 
-        for (int W = sqrt; W >= 0; W--) {
+        for (int W = sqrt; W > 0; W--) {
 
             if (area % W == 0) {
 

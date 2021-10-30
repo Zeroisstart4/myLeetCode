@@ -1,3 +1,7 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
 /**
 <p>给定一个大小为 <em>n </em>的整数数组，找出其中所有出现超过 <code>⌊ n/3 ⌋</code> 次的元素。</p>
 
@@ -39,6 +43,21 @@
 class Solution {
     public List<Integer> majorityElement(int[] nums) {
 
+        List<Integer> res = new ArrayList<>();
+        int n = nums.length;
+        int half = n / 3;
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        for (Integer key : map.keySet()) {
+            if (map.get(key) > half) {
+                res.add(key);
+            }
+        }
+
+        return res;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

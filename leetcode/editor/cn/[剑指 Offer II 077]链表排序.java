@@ -63,7 +63,60 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
+        return mergeSort(head, null);
+    }
 
+    public ListNode mergeSort(ListNode head, ListNode tail) {
+
+        if (head == null) {
+            return null;
+        }
+
+        if (head.next == tail) {
+            head.next = null;
+            return head;
+        }
+
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != tail) {
+            slow = slow.next;
+            fast = fast.next;
+            if (fast != tail) {
+                fast = fast.next;
+            }
+        }
+
+        ListNode mid = slow;
+
+        ListNode list1 = mergeSort(head, mid);
+        ListNode list2 = mergeSort(mid, tail);
+        ListNode res = merge(list1, list2);
+
+        return res;
+    }
+
+    public ListNode merge(ListNode l1, ListNode l2) {
+
+        ListNode dummy = new ListNode();
+        ListNode cur = dummy;
+        while (l1 != null && l2 != null) {
+
+            if (l1.val < l2.val) {
+                cur.next = l1;
+                l1 = l1.next;
+            }
+            else {
+                cur.next = l2;
+                l2 = l2.next;
+            }
+            cur = cur.next;
+        }
+
+        cur.next = l1 != null ? l1 : l2;
+
+        return dummy.next;
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)

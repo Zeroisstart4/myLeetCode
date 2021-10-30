@@ -49,29 +49,8 @@ import java.util.Set;
 
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
-    // 动态规划
-    /*public String longestPalindrome(String s) {
-        int n = s.length();
-        boolean[][] dp = new boolean[n][n];
-        String ans = "";
-        for (int l = 0; l < n; ++l) {
-            for (int i = 0; i + l < n; ++i) {
-                int j = i + l;
-                if (l == 0) {
-                    dp[i][j] = true;
-                } else if (l == 1) {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j));
-                } else {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j) && dp[i + 1][j - 1]);
-                }
-                if (dp[i][j] && l + 1 > ans.length()) {
-                    ans = s.substring(i, i + l + 1);
-                }
-            }
-        }
-        return ans;
-    }*/
 
+    // 动态规划
     public String longestPalindrome(String s) {
         // 记录数组长度
         int n = s.length();
@@ -105,71 +84,6 @@ class Solution {
 
         return ans;
     }
-
-
-    /*public String longestPalindrome(String s) {
-
-        int n = s.length();
-
-        boolean[][] dp = new boolean[n][n];
-
-        String res = "";
-        for (int len = 0; len < n; len++) {
-
-            for (int i = 0; i + len < n; i++) {
-
-                int j = i + len;
-
-                if (len == 0) {
-                    dp[i][j] = true;
-                }
-                else if (len == 1) {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j));
-                }
-                else {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j)) && dp[i + 1][j - 1];
-                }
-
-                if (dp[i][j] && res.length() < len) {
-                    res = s.substring(i, i + len + 1);
-                }
-            }
-        }
-
-        return res;
-    }*/
-
-    /*public String longestPalindrome(String s) {
-
-        int n = s.length();
-        int[][] dp = new int[n][n];
-
-        String res = "";
-
-        for (int len = 0; len < n; len++) {
-
-            for (int i = 0; i + len < n; i++) {
-
-                int j = i + len;
-
-                if (len == 0) {
-                    dp[i][j] = true;
-                }
-                else if (len == 1) {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j));
-                }
-                else {
-                    dp[i][j] = (s.charAt(i) == s.charAt(j)) && dp[i + 1][j - 1];
-                }
-
-                if (dp[i][j] && res.length() < len + 1) {
-                    res = s.substring(i, j + 1);
-                }
-            }
-        }
-
-        return res;
-    }*/
 
 }
 //leetcode submit region end(Prohibit modification and deletion)
