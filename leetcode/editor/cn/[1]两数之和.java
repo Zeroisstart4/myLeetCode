@@ -76,6 +76,5 @@ class Solution {
         }
         return new int[0];
     }
-
 }
 //leetcode submit region end(Prohibit modification and deletion)

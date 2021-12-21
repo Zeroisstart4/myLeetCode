@@ -38,7 +38,41 @@
 //leetcode submit region begin(Prohibit modification and deletion)
 class Solution {
     public boolean canPartition(int[] nums) {
+        int len = nums.length;
 
+        if(len < 2) {
+            return false;
+        }
+
+        int sum = 0;
+        int maxNum = 0;
+
+        for (int num : nums) {
+            sum += num;
+            maxNum = Math.max(maxNum, num);
+        }
+
+        if(sum % 2 != 0) {
+            return false;
+        }
+
+        int target = sum / 2;
+
+        if(maxNum > target) {
+            return false;
+        }
+
+        boolean[] dp = new boolean[target + 1];
+        dp[0] = true;
+
+        for (int i = 0; i < len; i++) {
+            int num = nums[i];
+            for (int j = target; j >= num; j--) {
+                dp[j] |= dp[j - num];
+            }
+        }
+
+        return dp[target];
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
